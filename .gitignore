@@ -1,0 +1,16 @@
+*~
+*.pyc
+TODO
+bin
+lib
+dist
+eggs
+parts
+build
+include
+downloads
+src_eggs
+develop-eggs
+.installed.cfg
+cmsplugin_zinnia.egg-info
+django-apps-src
