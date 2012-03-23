@@ -1,0 +1,9 @@
+include README.rst
+include LICENSE.txt
+include buildout.cfg
+include bootstrap.py
+recursive-include demo_cmsplugin_zinnia *
+recursive-include cmsplugin_zinnia/locale *
+recursive-include cmsplugin_zinnia/static *
+recursive-include cmsplugin_zinnia/templates *.txt *.html *.xml *.js
+exclude demo_cmsplugin_zinnia/demo.db
