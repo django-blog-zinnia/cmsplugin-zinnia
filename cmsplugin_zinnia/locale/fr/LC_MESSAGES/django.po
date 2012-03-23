@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cmsplugin_zinnia\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-23 10:14-0500\n"
+"PO-Revision-Date: 2012-03-23 16:21+0100\n"
+"Last-Translator: Fantomas <Fantomas42@gmail.com>\n"
+"Language-Team: Fantomas42 <fantomas42@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: admin.py:17
+msgid "Content"
+msgstr ""
+
+#: admin.py:20
+msgid "Options"
+msgstr ""
+
+#: admin.py:26
+msgid "Privacy"
+msgstr ""
+
+#: admin.py:28
+msgid "Discussion"
+msgstr ""
+
+#: admin.py:30
+msgid "Publication"
+msgstr ""
+
+#: cms_app.py:12
+msgid "Zinnia App Hook"
+msgstr ""
+
+#: cms_plugins.py:22
+#: cms_plugins.py:77
+#: cms_plugins.py:99
+#: cms_plugins.py:122
+#: models.py:61
+msgid "entries"
+msgstr ""
+
+#: cms_plugins.py:24
+msgid "Latest entries"
+msgstr ""
+
+#: cms_plugins.py:30
+msgid "Sorting"
+msgstr ""
+
+#: cms_plugins.py:34
+msgid "Advanced"
+msgstr ""
+
+#: cms_plugins.py:79
+msgid "Selected entries"
+msgstr "Sélection d'articles"
+
+#: cms_plugins.py:101
+msgid "Random entries"
+msgstr "Articles au hasard"
+
+#: cms_plugins.py:123
+msgid "Entries search form"
+msgstr "Formulaire de recherche"
+
+#: menu.py:19
+msgid "Zinnia Entry Menu"
+msgstr ""
+
+#: menu.py:65
+msgid "Zinnia Category Menu"
+msgstr ""
+
+#: menu.py:70
+msgid "Categories"
+msgstr ""
+
+#: menu.py:82
+msgid "Zinnia Author Menu"
+msgstr ""
+
+#: menu.py:87
+msgid "Authors"
+msgstr ""
+
+#: menu.py:100
+msgid "Zinnia Tag Menu"
+msgstr ""
+
+#: menu.py:105
+msgid "Tags"
+msgstr ""
+
+#: models.py:16
+msgid "Entry list (default)"
+msgstr ""
+
+#: models.py:17
+msgid "Entry detailed"
+msgstr ""
+
+#: models.py:25
+msgid "categories"
+msgstr ""
+
+#: models.py:28
+msgid "include subcategories"
+msgstr ""
+
+#: models.py:30
+msgid "authors"
+msgstr ""
+
+#: models.py:32
+msgid "tags"
+msgstr ""
+
+#: models.py:35
+#: models.py:85
+msgid "number of entries"
+msgstr ""
+
+#: models.py:37
+#: models.py:63
+#: models.py:87
+msgid "template"
+msgstr ""
+
+#: models.py:39
+#: models.py:65
+#: models.py:89
+msgid "Template used to display the plugin"
+msgstr ""
+
+#: models.py:54
+#: models.py:78
+#: models.py:92
+#, python-format
+msgid "%s entries"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/entry_detail.html:7
+#: templates/cmsplugin_zinnia/entry_list.html:9
+msgid "No entries yet."
+msgstr ""
+
