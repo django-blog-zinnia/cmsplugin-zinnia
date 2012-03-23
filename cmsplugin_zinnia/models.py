@@ -8,13 +8,13 @@ from django.utils.translation import ugettext_lazy as _
 from tagging.models import Tag
 from cms.models import CMSPlugin
 from menus.menu_pool import menu_pool
-
 from zinnia.models import Entry
 from zinnia.models import Category
+
 from cmsplugin_zinnia.settings import PLUGINS_TEMPLATES
 
-TEMPLATES = [('zinnia/cms/entry_list.html', _('Entry list (default)')),
-             ('zinnia/cms/entry_detail.html', _('Entry detailed'))] + \
+TEMPLATES = [('cmsplugin_zinnia/entry_list.html', _('Entry list (default)')),
+             ('cmsplugin_zinnia/entry_detail.html', _('Entry detailed'))] + \
              PLUGINS_TEMPLATES
 
 

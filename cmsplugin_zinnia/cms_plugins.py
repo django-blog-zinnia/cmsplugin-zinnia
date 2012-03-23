@@ -18,36 +18,20 @@ from cmsplugin_zinnia.models import SelectedEntriesPlugin
 
 
 class CMSLatestEntriesPlugin(CMSPluginBase):
-    """Django-cms plugin for the latest entries filtered"""
+    """Plugin for including the latest entries filtered"""
     module = _('entries')
     model = LatestEntriesPlugin
     name = _('Latest entries')
-    render_template = 'zinnia/cms/entry_list.html'
+    render_template = 'cmsplugin_zinnia/entry_list.html'
     filter_horizontal = ['categories', 'authors', 'tags']
     fieldsets = (
-        (None, {
-            'fields': (
-                'number_of_entries',
-                'template_to_render'
-            )
-        }),
-        (_('Sorting'), {
-            'fields': (
-                'categories',
-                'authors',
-                'tags'
-            ),
-            'classes': (
-                'collapse',
-            )
-        }),
-        (_('Advanced'), {
-            'fields': (
-                'subcategories',
-            ),
-        }),
-    )
-
+        (None, {'fields': ('number_of_entries',
+                           'template_to_render')}),
+        (_('Sorting'), {'fields': ('categories',
+                                   'authors',
+                                   'tags'),
+                        'classes': ('collapse',)}),
+        (_('Advanced'), {'fields': ('subcategories',)}))
     text_enabled = True
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
@@ -85,15 +69,15 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
 
     def icon_src(self, instance):
         """Icon source of the plugin"""
-        return settings.STATIC_URL + u'zinnia/img/plugin.png'
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
 class CMSSelectedEntriesPlugin(CMSPluginBase):
-    """Django-cms plugin for a selection of entries"""
+    """Plugin for including a selection of entries"""
     module = _('entries')
     model = SelectedEntriesPlugin
     name = _('Selected entries')
-    render_template = 'zinnia/cms/entry_list.html'
+    render_template = 'cmsplugin_zinnia/entry_list.html'
     fields = ('entries', 'template_to_render')
     filter_horizontal = ['entries']
     text_enabled = True
@@ -107,15 +91,15 @@ class CMSSelectedEntriesPlugin(CMSPluginBase):
 
     def icon_src(self, instance):
         """Icon source of the plugin"""
-        return settings.STATIC_URL + u'zinnia/img/plugin.png'
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
 class CMSRandomEntriesPlugin(CMSPluginBase):
-    """Django-cms plugin for random entries"""
+    """Plugin for including random entries"""
     module = _('entries')
     model = RandomEntriesPlugin
     name = _('Random entries')
-    render_template = 'zinnia/cms/random_entries.html'
+    render_template = 'cmsplugin_zinnia/random_entries.html'
     fields = ('number_of_entries', 'template_to_render')
     text_enabled = True
 
@@ -129,17 +113,23 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
 
     def icon_src(self, instance):
         """Icon source of the plugin"""
-        return settings.STATIC_URL + u'zinnia/img/plugin.png'
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
 class CMSSearchPlugin(CMSPluginBase):
+    """Plugins for including a Zinnia's search form"""
     model = CMSPlugin
     module = _('entries')
-    name = _("Entries search form")
-    render_template = "zinnia/cms/search.html"
+    name = _('Entries search form')
+    render_template = 'cmsplugin_zinnia/search_form.html'
+    text_enabled = True
 
     def render(self, context, instance, placeholder):
         return context
+
+    def icon_src(self, instance):
+        """Icon source of the plugin"""
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
