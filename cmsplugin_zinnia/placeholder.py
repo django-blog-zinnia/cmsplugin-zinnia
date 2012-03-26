@@ -14,6 +14,6 @@ class EntryPlaceholder(EntryAbstractClass):
         """No additional formatting is necessary"""
         return self.content
 
-    class Meta:
+    class Meta(EntryAbstractClass.Meta):
         """EntryPlaceholder's Meta"""
         abstract = True
