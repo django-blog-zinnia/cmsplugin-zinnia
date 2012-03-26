@@ -65,5 +65,5 @@ CMSPLUGIN_ZINNIA_TEMPLATES
 List of tuple for extending the plugins rendering templates.
 
 
-.. _`django-blog-zinnia`: http;//django-blog-zinnia.com/
-.. _`django-cms`: http;//django-cms.com/
+.. _django-blog-zinnia: http://django-blog-zinnia.com/
+.. _django-cms: http://django-cms.com/
