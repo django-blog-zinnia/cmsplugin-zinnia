@@ -131,6 +131,7 @@ class CMSSearchPlugin(CMSPluginBase):
         """Icon source of the plugin"""
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
