@@ -38,8 +38,12 @@ LANGUAGES = (('en', gettext('English')),
              ('it', gettext('Italian')),
              ('nl', gettext('Dutch')),
              ('hu', gettext('Hungarian')),
+             ('cs', gettext('Czech')),
+             ('sk', gettext('Slovak')),
              ('ru', gettext('Russian')),
              ('pl', gettext('Polish')),
+             ('eu', gettext('Basque')),
+             ('hr_HR', gettext('Croatian')),
              ('pt_BR', gettext('Brazilian Portuguese')),
              ('zh_CN', gettext('Simplified Chinese')),)
 
@@ -103,3 +107,5 @@ INSTALLED_APPS = (
 CMS_TEMPLATES = (
     ('cms/page.html', gettext('Default page')),
     )
+
+ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
