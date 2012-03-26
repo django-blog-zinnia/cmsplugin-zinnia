@@ -153,6 +153,16 @@ class CMSSearchPlugin(CMSPluginBase):
     def icon_src(self, instance):
         """Icon source of the plugin"""
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+        
+
+class CMSToolsPlugin(CMSPluginBase):
+    model = CMSPlugin
+    module = _('entries')
+    name = _("Administration tools")
+    render_template = "cmsplugin_zinnia/tools.html"
+
+    def render(self, context, instance, placeholder):
+        return context
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
@@ -160,3 +170,4 @@ plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSCategoryEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
+plugin_pool.register_plugin(CMSToolsPlugin)
