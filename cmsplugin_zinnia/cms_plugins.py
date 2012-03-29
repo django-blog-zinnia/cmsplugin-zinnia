@@ -19,7 +19,7 @@ from cmsplugin_zinnia.models import SelectedEntriesPlugin
 
 class CMSLatestEntriesPlugin(CMSPluginBase):
     """Plugin for including the latest entries filtered"""
-    module = _('entries')
+    module = 'Zinnia'
     model = LatestEntriesPlugin
     name = _('Latest entries')
     render_template = 'cmsplugin_zinnia/entry_list.html'
@@ -74,7 +74,7 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
 
 class CMSSelectedEntriesPlugin(CMSPluginBase):
     """Plugin for including a selection of entries"""
-    module = _('entries')
+    module = 'Zinnia'
     model = SelectedEntriesPlugin
     name = _('Selected entries')
     render_template = 'cmsplugin_zinnia/entry_list.html'
@@ -96,7 +96,7 @@ class CMSSelectedEntriesPlugin(CMSPluginBase):
 
 class CMSRandomEntriesPlugin(CMSPluginBase):
     """Plugin for including random entries"""
-    module = _('entries')
+    module = 'Zinnia'
     model = RandomEntriesPlugin
     name = _('Random entries')
     render_template = 'cmsplugin_zinnia/random_entries.html'
@@ -118,8 +118,8 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
 
 class CMSSearchPlugin(CMSPluginBase):
     """Plugins for including a Zinnia's search form"""
+    module = 'Zinnia'
     model = CMSPlugin
-    module = _('entries')
     name = _('Entries search form')
     render_template = 'cmsplugin_zinnia/search_form.html'
     text_enabled = True
