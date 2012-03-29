@@ -122,7 +122,7 @@ class EntryModifier(Modifier):
             return nodes
         for node in nodes:
             if node.attr.get('hidden'):
-                nodes.remove(node)
+                node.visible = False
         return nodes
 
 
