@@ -1,7 +1,11 @@
 {% extends "zinnia/skeleton.html" %}
 {% load cms_tags menu_tags %}
 
-{% block title %}{% page_attribute page_title %}{% endblock %}
+{% block title %}{% page_attribute "page_title" %}{% endblock %}
+
+{% block meta-description %}{% page_attribute "meta_description" %}{% endblock %}
+
+{% block meta-keywords %}{% page_attribute "meta_keywords" %}{% endblock %}
 
 {% block body-class %}cms{% endblock %}
 

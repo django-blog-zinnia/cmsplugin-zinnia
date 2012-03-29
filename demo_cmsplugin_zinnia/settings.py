@@ -108,4 +108,6 @@ CMS_TEMPLATES = (
     ('cms/page.html', gettext('Default page')),
     )
 
+CMS_SEO_FIELDS = True
+
 ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
