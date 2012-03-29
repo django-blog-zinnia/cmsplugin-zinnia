@@ -1,4 +1,4 @@
-{% load zinnia_tags i18n sekizai_tags cms_tags %}
+{% load zinnia_tags i18n sekizai_tags cms_tags menu_tags %}
 {% get_tags as entry_tags %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
@@ -21,6 +21,7 @@
     <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}zinnia/css/ie.css" />
     <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}cmsplugin_zinnia/css/menu.css" />
     {% block link %}{% endblock %}
     {% render_block "css" %}
     {% block script %}{% endblock %}
@@ -49,6 +50,9 @@
         <blockquote>
           <p>Just another Zinnia weblog with Django-CMS</p>
         </blockquote>
+        <ul class="main-menu">
+          {% show_menu 0 100 100 100 %}
+        </ul>
         {% block breadcrumbs %}{% endblock %}
       </div>
       {% block slider %}{% endblock %}

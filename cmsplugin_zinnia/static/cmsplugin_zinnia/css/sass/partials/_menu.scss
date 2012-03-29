@@ -1,0 +1,23 @@
+$menu-color: white;
+
+ul.main-menu {
+  @include suckerfish(8em, 6em);
+  display: inline-block;
+  font-size: 1.3em;
+  a {
+    font-weight: bold;
+    text-decoration: none;
+  }
+  li {
+    padding: 5px 8px;
+    border: 1px solid $border-color;
+    list-style: none;
+    background-color: $menu-color;
+    &.ancestor {
+      background-color: darken($menu-color, 2%);
+    }
+    &.selected {
+      background-color: darken($menu-color, 3%);
+    }
+  }
+}

@@ -1,0 +1,54 @@
+//   SCSS port of CSS at http://htmldog.com/articles/suckerfish/dropdowns/
+//   Built with compass http://www.compass-style.org
+//   Generates the styles for suckerfish dropdowns
+//
+//   Pass in the parameters $topLevelWidth and $lowerLevelWidth. The former controls the width of the first level,
+//   i.e. the visible level. The lower level is the width of the sub-levels, which get exposed on hover.
+//
+//   Call this mixin with @import suckerfish(topLevelWidth, lowerLevelWidth), then style it as needed.
+//
+//   To override any of these styles, place your code after the @import directive.
+//
+//   This will handle up to three levels of dropdowns.
+//
+
+@mixin suckerfish($topLevelWidth, $lowerLevelWidth) {
+  & {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    display: block;
+    width: $topLevelWidth;
+  }
+  li {
+    float: left;
+    width: $topLevelWidth;
+    &:hover {
+      ul {
+        left:auto;
+        li {
+          float: none;
+          display: block;
+        }
+        ul {
+          left: -999em;
+        }
+      }
+    }
+    li:hover {
+      ul {
+        left: auto;
+      }
+    }
+    ul {
+      position: absolute;
+      width: $lowerLevelWidth;
+      left: -999em;
+      ul {
+        margin: -1em 0 0 $lowerLevelWidth;
+      }
+    }
+  }
+}

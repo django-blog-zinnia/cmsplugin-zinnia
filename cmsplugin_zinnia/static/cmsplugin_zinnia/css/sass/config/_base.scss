@@ -1,0 +1,11 @@
+// Colors
+$font-color             : #333333;
+
+$link-color             : #0066AA;
+$link-hover-color       : lighten($link-color, 20%);
+$link-focus-color       : $link-hover-color;
+$link-active-color      : lighten(adjust-hue($link-color, 75deg), 10%);
+$link-visited-color     : $link-color;
+
+$box-color              : #e9e9f3;
+$border-color           : #eeeeee;
