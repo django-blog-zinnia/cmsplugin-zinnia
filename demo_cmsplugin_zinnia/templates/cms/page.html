@@ -6,5 +6,16 @@
 {% block body-class %}cms{% endblock %}
 
 {% block content %}
-  {% placeholder content %}
+  {% placeholder "content" or %}
+  <h1>Welcome !</h1>
+  <p>Now let's start <a href="?edit">adding some plugins</a> !</p>
+  {% endplaceholder %}
+{% endblock %}
+
+{% block sidebar %}
+  {% placeholder "sidebar" inherit or %}
+  <h3>Sidebar</h3>
+  <p>You can also put plugins here.</p>
+  <p>Note, this placeholder is inherited.</p>
+  {% endplaceholder %}
 {% endblock %}
