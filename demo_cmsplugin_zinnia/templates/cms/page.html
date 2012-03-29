@@ -1,9 +1,15 @@
 {% extends "zinnia/skeleton.html" %}
-{% load cms_tags %}
+{% load cms_tags menu_tags %}
 
 {% block title %}{% page_attribute page_title %}{% endblock %}
 
 {% block body-class %}cms{% endblock %}
+
+{% block breadcrumbs %}
+<ul class="breadcrumbs">
+  {% show_breadcrumb %}
+</ul>
+{% endblock %}
 
 {% block content %}
   {% placeholder "content" or %}
