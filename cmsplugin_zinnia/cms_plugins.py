@@ -127,6 +127,10 @@ class CMSSearchPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         return context
 
+    def icon_alt(self, instance):
+        """Alternative text of the plugin"""
+        return unicode(self.name)
+
     def icon_src(self, instance):
         """Icon source of the plugin"""
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
