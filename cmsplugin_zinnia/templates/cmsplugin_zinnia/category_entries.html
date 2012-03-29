@@ -1,0 +1,14 @@
+{% load i18n zinnia_tags %}
+
+
+{% for object in entries %}
+<div id="entry-{{ object.pk }}" class="hentry{% if object.featured %} featured{% endif %} span-16 last">
+  {% with object.html_content|truncatewords_html:100|safe as object_content %}
+  {% include "zinnia/_entry_detail_for_list.html" %}
+  {% endwith %}
+</div>
+<hr />
+{% empty %}
+  {% trans "No entries yet." %}
+{% endfor %}
+

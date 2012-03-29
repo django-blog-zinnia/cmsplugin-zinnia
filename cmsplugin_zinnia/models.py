@@ -93,6 +93,17 @@ class RandomEntriesPlugin(CMSPlugin):
     def __unicode__(self):
         return _('%s entries') % self.number_of_entries
 
+class CategoryEntriesPlugin(CMSPlugin):
+    """CMS Plugin for displaying entries in a category"""
+
+    category = models.ForeignKey(Category, null=False)
+    number_of_entries = models.IntegerField(
+        _('number of entries'), default=5)
+
+    def __unicode__(self):
+        return _('%s entries') % self.number_of_entries      
+
+
 
 def invalidate_menu_cache(sender, **kwargs):
     """Signal receiver to invalidate the menu_pool

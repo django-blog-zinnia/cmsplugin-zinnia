@@ -15,6 +15,7 @@ from zinnia.managers import tags_published
 from cmsplugin_zinnia.models import RandomEntriesPlugin
 from cmsplugin_zinnia.models import LatestEntriesPlugin
 from cmsplugin_zinnia.models import SelectedEntriesPlugin
+from cmsplugin_zinnia.models import CategoryEntriesPlugin
 
 
 class CMSLatestEntriesPlugin(CMSPluginBase):
@@ -115,6 +116,28 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
         """Icon source of the plugin"""
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
+class CMSCategoryEntriesPlugin(CMSPluginBase):
+    """Django-cms plugin for random entries"""
+    module = _('entries')
+    model = CategoryEntriesPlugin
+    name = _('Category entries')
+    render_template = 'cmsplugin_zinnia/category_entries.html'
+    fields = ('category',)
+    text_enabled = True
+
+    def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        
+        entries = instance.category.entries_published()
+        context.update(
+            {'entries': entries
+            })
+        return context
+
+    def icon_src(self, instance):
+        """Icon source of the plugin"""
+        return settings.STATIC_URL + u'zinnia/img/plugin.png'
+
 
 class CMSSearchPlugin(CMSPluginBase):
     """Plugins for including a Zinnia's search form"""
@@ -134,9 +157,21 @@ class CMSSearchPlugin(CMSPluginBase):
     def icon_src(self, instance):
         """Icon source of the plugin"""
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+        
+
+class CMSToolsPlugin(CMSPluginBase):
+    model = CMSPlugin
+    module = _('entries')
+    name = _("Administration tools")
+    render_template = "cmsplugin_zinnia/tools.html"
+
+    def render(self, context, instance, placeholder):
+        return context
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
+plugin_pool.register_plugin(CMSCategoryEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
+plugin_pool.register_plugin(CMSToolsPlugin)
