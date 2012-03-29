@@ -25,18 +25,20 @@ class LatestEntriesPlugin(CMSPlugin):
         Category, verbose_name=_('categories'),
         blank=True, null=True)
     subcategories = models.BooleanField(
-        default=True, verbose_name=_('include subcategories'))
+        _('include subcategories'), default=True,
+        help_text=_('include the entries belonging the subcategories'))
     authors = models.ManyToManyField(
         User, verbose_name=_('authors'), blank=True, null=True)
     tags = models.ManyToManyField(
         Tag, verbose_name=_('tags'), blank=True, null=True)
 
     number_of_entries = models.IntegerField(
-        _('number of entries'), default=5)
+        _('number of entries'), default=5,
+        help_text=_('0 means all the entries'))
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
-        help_text=_('Template used to display the plugin'))
+        help_text=_('template used to display the plugin'))
 
     @property
     def render_template(self):
@@ -62,7 +64,7 @@ class SelectedEntriesPlugin(CMSPlugin):
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
-        help_text=_('Template used to display the plugin'))
+        help_text=_('template used to display the plugin'))
 
     @property
     def render_template(self):
@@ -86,7 +88,7 @@ class RandomEntriesPlugin(CMSPlugin):
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
-        help_text=_('Template used to display the plugin'))
+        help_text=_('template used to display the plugin'))
 
     def __unicode__(self):
         return _('%s entries') % self.number_of_entries

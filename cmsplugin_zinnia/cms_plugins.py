@@ -27,11 +27,9 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
     fieldsets = (
         (None, {'fields': ('number_of_entries',
                            'template_to_render')}),
-        (_('Sorting'), {'fields': ('categories',
-                                   'authors',
-                                   'tags'),
-                        'classes': ('collapse',)}),
-        (_('Advanced'), {'fields': ('subcategories',)}))
+        (_('Filters'), {'fields': (('categories', 'subcategories'),
+                                   'authors', 'tags'),
+                        'classes': ('collapse',)}),)
     text_enabled = True
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
@@ -61,7 +59,9 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
             entries = TaggedItem.objects.get_union_by_model(
                 entries, instance.tags.all())
 
-        entries = entries.distinct()[:instance.number_of_entries]
+        entries = entries.distinct()
+        if instance.number_of_entries:
+            entries = entries[:instance.number_of_entries]
         context.update({'entries': entries,
                         'object': instance,
                         'placeholder': placeholder})
