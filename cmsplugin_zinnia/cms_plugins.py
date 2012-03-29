@@ -136,7 +136,28 @@ class CMSSearchPlugin(CMSPluginBase):
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
+class CMSToolsPlugin(CMSPluginBase):
+    """Plugins for including tool links for Zinnia"""
+    module = 'Zinnia'
+    model = CMSPlugin
+    name = _('Administration tools')
+    render_template = 'cmsplugin_zinnia/tools.html'
+    text_enabled = True
+
+    def render(self, context, instance, placeholder):
+        return context
+
+    def icon_alt(self, instance):
+        """Alternative text of the plugin"""
+        return unicode(self.name)
+
+    def icon_src(self, instance):
+        """Icon source of the plugin"""
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
+plugin_pool.register_plugin(CMSToolsPlugin)

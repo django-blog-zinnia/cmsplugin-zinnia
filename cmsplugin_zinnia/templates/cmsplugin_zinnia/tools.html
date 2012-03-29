@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load url from future %}
+<ul>
+  {% if perms.zinnia %}
+  <li>
+    <a href="{% url 'admin:app_list' "zinnia" %}" title="{% trans "Dashboard" %}">
+      {% trans "Dashboard" %}
+    </a>
+  </li>
+  {% endif %}
+  {% if perms.zinnia.add_entry %}
+  <li>
+    <a href="{% url 'admin:zinnia_entry_add' %}" title="{% trans "Post an entry" %}">
+      {% trans "Post an entry" %}
+    </a>
+  </li>
+  {% endif %}
+  {% if user.is_authenticated %}
+  <li>
+    <a href="{% url 'admin:logout' %}" title="{% trans "Log out" %}">
+      {% trans "Log out" %}
+    </a>
+  </li>
+  {% else %}
+  <li>
+    <a href="{% url 'admin:index' %}" title="{% trans "Administration" %}">
+      {% trans "Administration" %}
+    </a>
+  </li>
+  {% endif %}
+</ul>
