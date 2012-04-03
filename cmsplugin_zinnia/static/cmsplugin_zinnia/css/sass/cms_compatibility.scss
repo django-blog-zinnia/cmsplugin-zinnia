@@ -1,0 +1,7 @@
+// Load configurables variables.
+@import "config/base";
+// Combine the partials into a single stylesheet.
+// under the body.zinnia class to avoid interferences
+.zinnia {
+  @import "partials/cms_compatibility";
+}
