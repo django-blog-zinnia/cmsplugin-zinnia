@@ -95,6 +95,34 @@ class RandomEntriesPlugin(CMSPlugin):
         return _('%s entries') % self.number_of_entries
 
 
+class QueryEntriesPlugin(CMSPlugin):
+    """CMS Plugin for displaying entries
+    based on a search pattern"""
+
+    query = models.CharField(
+        _('query'), max_length=250,
+        help_text=_(
+            'You can use - to exclude words or phrases, &quot;double ' \
+            'quotes&quot; for exact phrases and the AND/OR boolean ' \
+            'operators combined with parenthesis for complex queries.'))
+    number_of_entries = models.IntegerField(
+        _('number of entries'), default=5,
+        help_text=_('0 means all the entries'))
+    template_to_render = models.CharField(
+        _('template'), blank=True,
+        max_length=250, choices=TEMPLATES,
+        help_text=_('template used to display the plugin'))
+
+    @property
+    def render_template(self):
+        """Override render_template to use
+        the template_to_render attribute"""
+        return self.template_to_render
+
+    def __unicode__(self):
+        return _('%s entries') % self.number_of_entries
+
+
 def invalidate_menu_cache(sender, **kwargs):
     """Signal receiver to invalidate the menu_pool
     cache when an entry is posted"""

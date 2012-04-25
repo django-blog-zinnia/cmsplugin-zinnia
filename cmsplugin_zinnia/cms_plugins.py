@@ -5,16 +5,19 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from tagging.models import TaggedItem
+
+from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 from cms.models.pluginmodel import CMSPlugin
-from cms.plugin_pool import plugin_pool
 
 from zinnia.models import Entry
 from zinnia.models import Author
 from zinnia.managers import tags_published
+
 from cmsplugin_zinnia.models import RandomEntriesPlugin
 from cmsplugin_zinnia.models import LatestEntriesPlugin
 from cmsplugin_zinnia.models import SelectedEntriesPlugin
+from cmsplugin_zinnia.models import QueryEntriesPlugin
 
 
 class CMSLatestEntriesPlugin(CMSPluginBase):
@@ -116,6 +119,31 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
+class CMSQueryEntriesPlugin(CMSPluginBase):
+    """Plugin for including random entries"""
+    module = 'Zinnia'
+    model = QueryEntriesPlugin
+    name = _('Query entries')
+    render_template = 'cmsplugin_zinnia/entry_list.html'
+    fields = ('query', 'number_of_entries', 'template_to_render')
+    text_enabled = True
+
+    def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        entries = Entry.published.search(instance.query)
+        if instance.number_of_entries:
+            entries = entries[:instance.number_of_entries]
+
+        context.update({'entries': entries,
+                        'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+    def icon_src(self, instance):
+        """Icon source of the plugin"""
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+
+
 class CMSSearchPlugin(CMSPluginBase):
     """Plugins for including a Zinnia's search form"""
     module = 'Zinnia'
@@ -159,5 +187,6 @@ class CMSToolsPlugin(CMSPluginBase):
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
+plugin_pool.register_plugin(CMSQueryEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)
