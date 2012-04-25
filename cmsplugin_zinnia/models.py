@@ -14,7 +14,8 @@ from zinnia.models import Category
 from cmsplugin_zinnia.settings import PLUGINS_TEMPLATES
 
 TEMPLATES = [('cmsplugin_zinnia/entry_list.html', _('Entry list (default)')),
-             ('cmsplugin_zinnia/entry_detail.html', _('Entry detailed'))] + \
+             ('cmsplugin_zinnia/entry_detail.html', _('Entry detailed')),
+             ('cmsplugin_zinnia/entry_slider.html', _('Entry slider'))] + \
              PLUGINS_TEMPLATES
 
 
