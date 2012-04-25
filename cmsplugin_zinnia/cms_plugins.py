@@ -109,7 +109,8 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         """Update the context with plugin's data"""
         context.update(
-            {'number_of_entries': instance.number_of_entries,
+            {'object': instance,
+             'placeholder': placeholder,
              'template_to_render': str(instance.template_to_render) or
              'zinnia/tags/random_entries.html'})
         return context
@@ -153,6 +154,9 @@ class CMSSearchPlugin(CMSPluginBase):
     text_enabled = True
 
     def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        context.update({'object': instance,
+                        'placeholder': placeholder})
         return context
 
     def icon_alt(self, instance):
@@ -173,6 +177,9 @@ class CMSToolsPlugin(CMSPluginBase):
     text_enabled = True
 
     def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        context.update({'object': instance,
+                        'placeholder': placeholder})
         return context
 
     def icon_alt(self, instance):
