@@ -1,4 +1,5 @@
 """Menus for cmsplugin_zinnia"""
+from django.utils.dateformat import format
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -26,7 +27,7 @@ class EntryMenu(CMSAttachMenu):
         for entry in Entry.published.all():
             year = entry.creation_date.strftime('%Y')
             month = entry.creation_date.strftime('%m')
-            month_text = entry.creation_date.strftime('%b')
+            month_text = format(entry.creation_date, 'b').capitalize()
             day = entry.creation_date.strftime('%d')
 
             key_archive_year = 'year-%s' % year
