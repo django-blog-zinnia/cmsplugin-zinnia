@@ -18,6 +18,8 @@ from cmsplugin_zinnia.models import RandomEntriesPlugin
 from cmsplugin_zinnia.models import LatestEntriesPlugin
 from cmsplugin_zinnia.models import SelectedEntriesPlugin
 from cmsplugin_zinnia.models import QueryEntriesPlugin
+from cmsplugin_zinnia.models import CalendarEntriesPlugin
+from cmsplugin_zinnia.forms import CalendarEntriesAdminForm
 
 
 class CMSLatestEntriesPlugin(CMSPluginBase):
@@ -145,6 +147,30 @@ class CMSQueryEntriesPlugin(CMSPluginBase):
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
+class CMSCalendarEntriesPlugin(CMSPluginBase):
+    """Plugin for including calendar of published entries"""
+    module = 'Zinnia'
+    model = CalendarEntriesPlugin
+    name = _('Calendar entries')
+    render_template = 'cmsplugin_zinnia/calendar.html'
+    fieldsets = ((None, {
+        'fields': (('year', 'month'),),
+        'description': _("If you don't set year and month, " \
+                         "the current month will be used.")}),)
+    form = CalendarEntriesAdminForm
+    text_enabled = True
+
+    def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+    def icon_src(self, instance):
+        """Icon source of the plugin"""
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+
+
 class CMSSearchPlugin(CMSPluginBase):
     """Plugins for including a Zinnia's search form"""
     module = 'Zinnia'
@@ -195,5 +221,6 @@ plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
 plugin_pool.register_plugin(CMSQueryEntriesPlugin)
+plugin_pool.register_plugin(CMSCalendarEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)

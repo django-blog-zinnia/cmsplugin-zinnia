@@ -1,0 +1,6 @@
+{% load zinnia_tags %}
+{% if object.year %}
+{% get_calendar_entries object.year object.month %}
+{% else %}
+{% get_calendar_entries %}
+{% endif %}

@@ -123,6 +123,20 @@ class QueryEntriesPlugin(CMSPlugin):
         return _('%s entries') % self.number_of_entries
 
 
+class CalendarEntriesPlugin(CMSPlugin):
+    """CMS Plugin for displaying a calendar with
+    published entries"""
+
+    year = models.IntegerField(_('year'), null=True, blank=True)
+    month = models.IntegerField(_('month'), null=True, blank=True)
+
+    def __unicode__(self):
+        name = _('Calendar entries')
+        if self.year:
+            name = '%s: %s/%s' % (name, self.year, self.month)
+        return '%s' % name
+
+
 def invalidate_menu_cache(sender, **kwargs):
     """Signal receiver to invalidate the menu_pool
     cache when an entry is posted"""
