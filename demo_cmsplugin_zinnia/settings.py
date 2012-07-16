@@ -20,8 +20,6 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-ADMIN_MEDIA_PREFIX = '%sadmin/' % STATIC_URL
-
 SECRET_KEY = 'fgh1rzme%sfv3#n+fb7h948yuv3(pt63abhi12_t7e^^5q8dyw'
 
 USE_I18N = True
