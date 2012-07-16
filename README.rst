@@ -9,8 +9,8 @@ This package provides plugins, menus and apphook to integrate your Zinnia
 powered Weblog into your django-cms Web site.
 
 The code bundled in this application is a copy of the original
-``zinnia.plugins`` module, made for forward compatibility with Zinnia
-v0.11.
+``zinnia.plugins`` module, made for forward compatibility with
+django-blog-zinnia > 0.11.
 
 .. contents::
 
@@ -63,6 +63,36 @@ CMSPLUGIN_ZINNIA_TEMPLATES
 **Default value:** ``()`` (Empty tuple)
 
 List of tuple for extending the plugins rendering templates.
+
+.. _changelog:
+
+Changelog
+=========
+
+0.3
+---
+
+- Calendar plugin.
+- QueryEntries plugin.
+- Slider template for plugins.
+- Documentation improvements.
+- Fix breadcrumbs with month abbrev.
+- Compatibility with Django 1.4 and Django-CMS 2.3.
+
+0.2
+---
+
+- Better demo.
+- Renaming modules.
+- Fix dependancies with mptt.
+- Fix ``EntryPlaceholder``'s Meta.
+- ``0`` means all the entries on plugins.
+- Set menu Nodes to invisible instead of removing.
+
+0.1
+---
+
+- Initial release based on ``zinnia.plugins``.
 
 
 .. _django-blog-zinnia: http://django-blog-zinnia.com/
