@@ -1,7 +1,9 @@
-import os
-from setuptools import setup, find_packages
+"""Setup script for cmsplugin_zinnia"""
+from setuptools import setup
+from setuptools import find_packages
 
 import cmsplugin_zinnia
+
 
 setup(name='cmsplugin_zinnia',
       version=cmsplugin_zinnia.__version__,
@@ -24,9 +26,8 @@ setup(name='cmsplugin_zinnia',
           'Intended Audience :: Developers',
           'Operating System :: OS Independent',
           'License :: OSI Approved :: BSD License',
-          'Topic :: Software Development :: Libraries :: Python Modules',],
+          'Topic :: Software Development :: Libraries :: Python Modules'],
 
       license=cmsplugin_zinnia.__license__,
       include_package_data=True,
       zip_safe=False)
-
