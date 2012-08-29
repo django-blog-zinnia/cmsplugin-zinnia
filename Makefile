@@ -10,8 +10,17 @@ SUCCESS_COLOR	= \033[35;01m
 all: kwalitee clean package
 
 package:
-	@echo "$(COLOR)* Creating source package for cmsplugin-innia$(NO_COLOR)"
+	@echo "$(COLOR)* Creating source package for cmsplugin-zinnia$(NO_COLOR)"
 	@python setup.py sdist
+
+translations:
+	@echo "$(COLOR)* Generating english translation$(NO_COLOR)"
+	@cd cmsplugin_zinnia && ../bin/demo makemessages --extension=.html,.txt -l en
+	@echo "$(COLOR)* Pushing translation to Transifex$(NO_COLOR)"
+	@rm -rf .tox
+	@tx push -s
+	@echo "$(COLOR)* Remove english translation$(NO_COLOR)"
+	@rm -rf cmsplugin_zinnia/locale/en/
 
 kwalitee:
 	@echo "$(COLOR)* Running pyflakes$(NO_COLOR)"
