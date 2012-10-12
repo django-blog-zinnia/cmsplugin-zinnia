@@ -1,6 +1,9 @@
-{% load i18n %}
+{% load i18n placeholder_tags cms_zinnia_captureas %}
 {% for entry in entries %}
-  {% with object=entry object_content=entry.html_content|truncatewords_html:100|safe continue_reading=1 %}
+{% captureas content %}
+{% render_placeholder entry.content_placeholder %}
+{% endcaptureas %}
+  {% with object=entry object_content=content|truncatewords_html:100|safe continue_reading=1 %}
   {% include "zinnia/_entry_detail.html" %}
   {% endwith %}
 {% empty %}
