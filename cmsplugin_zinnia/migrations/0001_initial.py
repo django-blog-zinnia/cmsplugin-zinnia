@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
-    depends_on = [('cms', '0001_initial')]
+    depends_on = [('zinnia', '0001_initial'),
+                  ('cms', '0001_initial')]
 
     def forwards(self, orm):
         # Adding model 'LatestEntriesPlugin'
