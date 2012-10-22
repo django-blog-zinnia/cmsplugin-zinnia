@@ -155,7 +155,7 @@ class CMSCalendarEntriesPlugin(CMSPluginBase):
     render_template = 'cmsplugin_zinnia/calendar.html'
     fieldsets = ((None, {
         'fields': (('year', 'month'),),
-        'description': _("If you don't set year and month, " \
+        'description': _("If you don't set year and month, "
                          "the current month will be used.")}),)
     form = CalendarEntriesAdminForm
     text_enabled = True

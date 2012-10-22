@@ -13,10 +13,11 @@ from zinnia.models.category import Category
 
 from cmsplugin_zinnia.settings import PLUGINS_TEMPLATES
 
-TEMPLATES = [('cmsplugin_zinnia/entry_list.html', _('Entry list (default)')),
-             ('cmsplugin_zinnia/entry_detail.html', _('Entry detailed')),
-             ('cmsplugin_zinnia/entry_slider.html', _('Entry slider'))] + \
-             PLUGINS_TEMPLATES
+TEMPLATES = [
+    ('cmsplugin_zinnia/entry_list.html', _('Entry list (default)')),
+    ('cmsplugin_zinnia/entry_detail.html', _('Entry detailed')),
+    ('cmsplugin_zinnia/entry_slider.html', _('Entry slider'))] \
+    + PLUGINS_TEMPLATES
 
 
 class LatestEntriesPlugin(CMSPlugin):
@@ -102,8 +103,8 @@ class QueryEntriesPlugin(CMSPlugin):
     query = models.CharField(
         _('query'), max_length=250,
         help_text=_(
-            'You can use - to exclude words or phrases, &quot;double ' \
-            'quotes&quot; for exact phrases and the AND/OR boolean ' \
+            'You can use - to exclude words or phrases, &quot;double '
+            'quotes&quot; for exact phrases and the AND/OR boolean '
             'operators combined with parenthesis for complex queries.'))
     number_of_entries = models.IntegerField(
         _('number of entries'), default=5,
