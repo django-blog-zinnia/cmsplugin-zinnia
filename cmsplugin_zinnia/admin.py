@@ -16,19 +16,8 @@ class EntryPlaceholderAdmin(PlaceholderAdmin, EntryAdmin):
     fieldsets = ((None, {'fields': ('title', 'image', 'status')}),
                  (_('Content'), {'fields': ('content_placeholder',),
                                  'classes': ('plugin-holder',
-                                             'plugin-holder-nopage')}),
-                 (_('Options'), {'fields': ('featured', 'excerpt', 'template',
-                                            'related', 'authors',
-                                            'creation_date',
-                                            'start_publication',
-                                            'end_publication'),
-                                 'classes': ('collapse', 'collapse-closed')}),
-                 (_('Privacy'), {'fields': ('password', 'login_required',),
-                                 'classes': ('collapse', 'collapse-closed')}),
-                 (_('Discussion'), {'fields': ('comment_enabled',
-                                               'pingback_enabled')}),
-                 (_('Publication'), {'fields': ('sites', 'categories',
-                                                'tags', 'slug')}))
+                                             'plugin-holder-nopage')})) + \
+                                             EntryAdmin.fieldsets[1:]
 
     def save_model(self, request, entry, form, change):
         """Fill the content field with the interpretation
