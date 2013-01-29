@@ -8,8 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 from tagging.models import Tag
 from cms.models import CMSPlugin
 from menus.menu_pool import menu_pool
-from zinnia.models.entry import Entry
-from zinnia.models.category import Category
+
+from zinnia.models import Entry
+from zinnia.models import Category
 
 from cmsplugin_zinnia.settings import PLUGINS_TEMPLATES
 

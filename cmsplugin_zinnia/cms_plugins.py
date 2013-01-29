@@ -10,8 +10,8 @@ from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 from cms.models.pluginmodel import CMSPlugin
 
-from zinnia.models.entry import Entry
-from zinnia.models.author import Author
+from zinnia.models import Entry
+from zinnia.models import Author
 from zinnia.managers import tags_published
 
 from cmsplugin_zinnia.models import RandomEntriesPlugin
