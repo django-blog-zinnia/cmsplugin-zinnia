@@ -1,8 +1,8 @@
 {% load i18n %}
 <ul>
-  {% for entry in entries %}
+  {% for object in entries %}
   <li>
-    <a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">{{ entry.title }}</a>
+    <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">{{ object.title }}</a>
   </li>
   {% empty %}
   <li>

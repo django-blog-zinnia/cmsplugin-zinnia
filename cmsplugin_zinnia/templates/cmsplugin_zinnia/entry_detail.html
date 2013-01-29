@@ -1,9 +1,7 @@
 {% load i18n placeholder_tags cms_zinnia_captureas %}
-{% for entry in entries %}
-  {% captureas content %}{% render_placeholder entry.content_placeholder %}{% endcaptureas %}
-  {% with object=entry object_content=content|truncatewords_html:100|safe continue_reading=1 %}
-  {% include "zinnia/_entry_detail.html" %}
-  {% endwith %}
+{% for object in entries %}
+  {% captureas content %}{% render_placeholder object.content_placeholder %}{% endcaptureas %}
+  {% include object.content_template with object_content=content|truncatewords_html:100|safe continue_reading=1 %}
 {% empty %}
   <p class="notice">{% trans "No entries yet." %}</p>
 {% endfor %}
