@@ -69,6 +69,12 @@ List of tuple for extending the plugins rendering templates.
 Changelog
 =========
 
+0.4
+---
+
+- Fix issues with Entry.content rendering.
+- Compatibility with latest version of Zinnia.
+
 0.3
 ---
 
