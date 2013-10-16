@@ -6,7 +6,7 @@ from django.db.models.signals import post_delete
 from django.utils.translation import ugettext_lazy as _
 
 from tagging.models import Tag
-from cms.models import CMSPlugin
+from cms.models.pluginmodel import CMSPlugin
 from menus.menu_pool import menu_pool
 
 from zinnia.models import Entry
