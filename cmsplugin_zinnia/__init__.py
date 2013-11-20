@@ -1,5 +1,5 @@
 """cmsplugin_zinnia"""
-__version__ = '0.4'
+__version__ = '0.4.1'
 __license__ = 'BSD License'
 
 __author__ = 'Fantomas42'
