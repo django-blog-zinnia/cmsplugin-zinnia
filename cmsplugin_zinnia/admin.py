@@ -13,11 +13,12 @@ from zinnia.settings import ENTRY_BASE_MODEL
 
 class EntryPlaceholderAdmin(PlaceholderAdmin, EntryAdmin):
     """EntryPlaceholder Admin"""
-    fieldsets = ((None, {'fields': ('title', 'image', 'status')}),
-                 (_('Content'), {'fields': ('content_placeholder',),
-                                 'classes': ('plugin-holder',
-                                             'plugin-holder-nopage')})) + \
-                                             EntryAdmin.fieldsets[1:]
+    fieldsets = (
+        (None, {'fields': ('title', 'image', 'status')}),
+        (_('Content'), {'fields': ('content_placeholder',),
+                        'classes': ('plugin-holder',
+                                    'plugin-holder-nopage')})) + \
+        EntryAdmin.fieldsets[1:]
 
     def save_model(self, request, entry, form, change):
         """Fill the content field with the interpretation
