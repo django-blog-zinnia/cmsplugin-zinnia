@@ -23,10 +23,8 @@ translations:
 	@rm -rf cmsplugin_zinnia/locale/en/
 
 kwalitee:
-	@echo "$(COLOR)* Running pyflakes$(NO_COLOR)"
-	@./bin/pyflakes cmsplugin_zinnia
-	@echo "$(COLOR)* Running pep8$(NO_COLOR)"
-	@./bin/pep8 --count --show-source --show-pep8 --statistics --exclude=migrations cmsplugin_zinnia
+	@echo "$(COLOR)* Running flake8$(NO_COLOR)"
+	@./bin/flake8 --count --show-source --show-pep8 --statistics --exclude=migrations cmsplugin_zinnia
 	@echo "$(SUCCESS_COLOR)* No kwalitee errors, Congratulations ! :)$(NO_COLOR)"
 
 clean:
