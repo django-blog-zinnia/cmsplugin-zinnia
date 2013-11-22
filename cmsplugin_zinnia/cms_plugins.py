@@ -2,7 +2,7 @@
 import itertools
 
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from tagging.models import TaggedItem
 
