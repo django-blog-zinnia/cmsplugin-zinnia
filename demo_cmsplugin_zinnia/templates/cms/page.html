@@ -1,5 +1,5 @@
 {% extends "zinnia/skeleton.html" %}
-{% load cms_tags menu_tags %}
+{% load i18n cms_tags menu_tags %}
 
 {% block title %}{% page_attribute "page_title" %}{% endblock %}
 
@@ -17,15 +17,15 @@
 
 {% block content %}
   {% placeholder "content" or %}
-  <h1>Welcome !</h1>
-  <p>Now let's start <a href="?edit">adding some plugins</a> !</p>
+  <h1>{% trans "Welcome!" %}</h1>
+  <p>{% blocktrans %}Now let's start <a href="?edit">adding some plugins</a>!{% endblocktrans %}</p>
   {% endplaceholder %}
 {% endblock %}
 
 {% block sidebar %}
   {% placeholder "sidebar" inherit or %}
-  <h3>Sidebar</h3>
-  <p>You can also put plugins here.</p>
-  <p>Note, this placeholder is inherited.</p>
+  <h3>{% trans "Sidebar" %}</h3>
+  <p>{% trans "You can also put plugins here." %}</p>
+  <p>{% trans "Note, this placeholder is inherited." %}</p>
   {% endplaceholder %}
 {% endblock %}
