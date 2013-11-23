@@ -13,6 +13,7 @@ from cms.models.pluginmodel import CMSPlugin
 from zinnia.models import Entry
 from zinnia.models import Author
 from zinnia.managers import tags_published
+from zinnia.templatetags.zinnia_tags import get_categories
 
 from cmsplugin_zinnia.models import RandomEntriesPlugin
 from cmsplugin_zinnia.models import LatestEntriesPlugin
@@ -217,6 +218,23 @@ class CMSToolsPlugin(CMSPluginBase):
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
+class CMSCategoriesPlugin(CMSPluginBase):
+    """Plugin for including Zinnia's categories """
+    module = 'Zinnia'
+    model = CMSPlugin
+    name = _('Categories Plugin')
+    render_template = 'cmsplugin_zinnia/categories.html'
+    text_enabled = True
+
+    def render(self, context, instance, placeholder):
+        """Update the context with plugin's data"""
+        # update context with categories list
+        context.update(get_categories(context, template=self.render_template))
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
@@ -224,3 +242,4 @@ plugin_pool.register_plugin(CMSQueryEntriesPlugin)
 plugin_pool.register_plugin(CMSCalendarEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)
+plugin_pool.register_plugin(CMSCategoriesPlugin)
