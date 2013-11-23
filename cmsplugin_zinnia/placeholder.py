@@ -1,6 +1,7 @@
 """Placeholder model for Zinnia"""
 import inspect
 
+from django.template.context import RequestContext
 from cms.models.fields import PlaceholderField
 from cms.plugin_rendering import render_placeholder
 
@@ -19,14 +20,20 @@ class EntryPlaceholder(AbstractEntry):
         but if you have a better way, you are welcome !
         """
         frame = None
+        request = None
+
         try:
             for f in inspect.stack()[1:]:
                 frame = f[0]
                 args, varargs, keywords, alocals = inspect.getargvalues(frame)
+                if not request and 'request' in args:
+                    request = alocals['request']
                 if 'context' in args:
                     return alocals['context']
         finally:
             del frame
+
+        return RequestContext(request)
 
     @property
     def html_content(self):
