@@ -1,7 +1,8 @@
 """Placeholder model for Zinnia"""
 import inspect
 
-from django.template.context import Context, RequestContext
+from django.template.context import Context
+from django.template.context import RequestContext
 from cms.models.fields import PlaceholderField
 from cms.plugin_rendering import render_placeholder
 
@@ -31,12 +32,11 @@ class EntryPlaceholder(AbstractEntry):
                     return alocals['context']
         finally:
             del frame
-        
+
         if request is not None:
             return RequestContext(request)
         else:
             return Context()
-        
 
     @property
     def html_content(self):
