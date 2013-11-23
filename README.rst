@@ -44,10 +44,10 @@ CMSPLUGIN_ZINNIA_APP_MENUS
 --------------------------
 **Default value:** ::
 
-  ('cmsplugin_zinnia.menu.EntryMenu',
+  ['cmsplugin_zinnia.menu.EntryMenu',
    'cmsplugin_zinnia.menu.CategoryMenu',
    'cmsplugin_zinnia.menu.TagMenu',
-   'cmsplugin_zinnia.menu.AuthorMenu')
+   'cmsplugin_zinnia.menu.AuthorMenu']
 
 List of strings representing the path to the `Menu` class provided by the
 Zinnia AppHook.
@@ -60,9 +60,16 @@ Boolean used for displaying or not the entries in the ``EntryMenu`` object.
 
 CMSPLUGIN_ZINNIA_TEMPLATES
 --------------------------
-**Default value:** ``()`` (Empty tuple)
+**Default value:** ``[]`` (Empty list)
 
 List of tuple for extending the plugins rendering templates.
+
+Example: ::
+
+  CMSPLUGIN_ZINNIA_TEMPLATES = [
+    ('entry_custom.html', 'Entry custom'),
+    ('entry_custom_bis.html', 'Entry custom bis')
+    ]
 
 .. _changelog:
 
