@@ -76,6 +76,11 @@ Example: ::
 Changelog
 =========
 
+0.4.1
+-----
+
+- Compatibility fix for Django-CMS 2.2+
+
 0.4
 ---
 
