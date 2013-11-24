@@ -22,6 +22,20 @@ from cmsplugin_zinnia.models import CalendarEntriesPlugin
 from cmsplugin_zinnia.forms import CalendarEntriesAdminForm
 
 
+class ZinniaCMSPluginBase(CMSPluginBase):
+    """
+    Base plugin for cmsplugin_zinnia
+    """
+    module = 'Zinnia'
+    text_enabled = True
+
+    def icon_src(self, instance):
+        """
+        Base icon for Zinnia's plugins
+        """
+        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+
+
 class CMSLatestEntriesPlugin(CMSPluginBase):
     """Plugin for including the latest entries filtered"""
     module = 'Zinnia'
