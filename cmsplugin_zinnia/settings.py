@@ -11,7 +11,6 @@ PLUGINS_TEMPLATES = getattr(settings, 'CMSPLUGIN_ZINNIA_TEMPLATES', [])
 
 APP_URLS = getattr(settings, 'CMSPLUGIN_ZINNIA_APP_URLS', ['zinnia.urls'])
 
-
 APP_MENUS = []
 DEFAULT_APP_MENUS = ['cmsplugin_zinnia.menu.EntryMenu',
                      'cmsplugin_zinnia.menu.CategoryMenu',
