@@ -36,9 +36,10 @@ class ZinniaCMSPluginBase(CMSPluginBase):
         return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
-class CMSLatestEntriesPlugin(CMSPluginBase):
-    """Plugin for including the latest entries filtered"""
-    module = 'Zinnia'
+class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including the latest entries filtered
+    """
     model = LatestEntriesPlugin
     name = _('Latest entries')
     render_template = 'cmsplugin_zinnia/entry_list.html'
@@ -49,10 +50,11 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
         (_('Filters'), {'fields': (('categories', 'subcategories'),
                                    'authors', 'tags'),
                         'classes': ('collapse',)}),)
-    text_enabled = True
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
-        """Filtering manytomany field"""
+        """
+        Filtering manytomany field
+        """
         if db_field.name == 'authors':
             kwargs['queryset'] = Author.published.all()
         if db_field.name == 'tags':
@@ -61,7 +63,9 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
             db_field, request, **kwargs)
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         entries = Entry.published.all()
 
         if instance.categories.count():
@@ -86,44 +90,40 @@ class CMSLatestEntriesPlugin(CMSPluginBase):
                         'placeholder': placeholder})
         return context
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSSelectedEntriesPlugin(CMSPluginBase):
-    """Plugin for including a selection of entries"""
-    module = 'Zinnia'
+class CMSSelectedEntriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including a selection of entries
+    """
     model = SelectedEntriesPlugin
     name = _('Selected entries')
     render_template = 'cmsplugin_zinnia/entry_list.html'
     fields = ('entries', 'template_to_render')
     filter_horizontal = ['entries']
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         context.update({'entries': instance.entries.all(),
                         'object': instance,
                         'placeholder': placeholder})
         return context
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSRandomEntriesPlugin(CMSPluginBase):
-    """Plugin for including random entries"""
-    module = 'Zinnia'
+class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including random entries
+    """
     model = RandomEntriesPlugin
     name = _('Random entries')
     render_template = 'cmsplugin_zinnia/random_entries.html'
     fields = ('number_of_entries', 'template_to_render')
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         context.update(
             {'object': instance,
              'placeholder': placeholder,
@@ -131,22 +131,20 @@ class CMSRandomEntriesPlugin(CMSPluginBase):
              'zinnia/tags/random_entries.html'})
         return context
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSQueryEntriesPlugin(CMSPluginBase):
-    """Plugin for including random entries"""
-    module = 'Zinnia'
+class CMSQueryEntriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including entries based on a search query
+    """
     model = QueryEntriesPlugin
     name = _('Query entries')
     render_template = 'cmsplugin_zinnia/entry_list.html'
     fields = ('query', 'number_of_entries', 'template_to_render')
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         entries = Entry.published.search(instance.query)
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
@@ -156,14 +154,11 @@ class CMSQueryEntriesPlugin(CMSPluginBase):
                         'placeholder': placeholder})
         return context
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSCalendarEntriesPlugin(CMSPluginBase):
-    """Plugin for including calendar of published entries"""
-    module = 'Zinnia'
+class CMSCalendarEntriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including calendar of published entries
+    """
     model = CalendarEntriesPlugin
     name = _('Calendar entries')
     render_template = 'cmsplugin_zinnia/calendar.html'
@@ -172,63 +167,60 @@ class CMSCalendarEntriesPlugin(CMSPluginBase):
         'description': _("If you don't set year and month, "
                          "the current month will be used.")}),)
     form = CalendarEntriesAdminForm
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         context.update({'object': instance,
                         'placeholder': placeholder})
         return context
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSSearchPlugin(CMSPluginBase):
-    """Plugins for including a Zinnia's search form"""
-    module = 'Zinnia'
+class CMSSearchPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including a Zinnia's search form
+    """
     model = CMSPlugin
     name = _('Entries search form')
     render_template = 'cmsplugin_zinnia/search_form.html'
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         context.update({'object': instance,
                         'placeholder': placeholder})
         return context
 
     def icon_alt(self, instance):
-        """Alternative text of the plugin"""
+        """
+        Alternative text of the plugin
+        """
         return unicode(self.name)
 
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
-
-class CMSToolsPlugin(CMSPluginBase):
-    """Plugins for including tool links for Zinnia"""
-    module = 'Zinnia'
+class CMSToolsPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including tool links for Zinnia
+    """
     model = CMSPlugin
     name = _('Administration tools')
     render_template = 'cmsplugin_zinnia/tools.html'
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
+        """
+        Update the context with plugin's data
+        """
         context.update({'object': instance,
                         'placeholder': placeholder})
         return context
 
     def icon_alt(self, instance):
-        """Alternative text of the plugin"""
+        """
+        Alternative text of the plugin
+        """
         return unicode(self.name)
-
-    def icon_src(self, instance):
-        """Icon source of the plugin"""
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
