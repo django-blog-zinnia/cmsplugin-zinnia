@@ -50,6 +50,12 @@ Just add this line in your project's settings to use it. ::
 Settings
 ========
 
+CMSPLUGIN_ZINNIA_APP_URLS
+-------------------------
+**Default value:** ``['zinnia.urls']``
+
+The URLsets used for by the Zinnia AppHook.
+
 CMSPLUGIN_ZINNIA_APP_MENUS
 --------------------------
 **Default value:** ::
