@@ -1,8 +1,8 @@
 """Plugins for CMS"""
 import itertools
 
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 from tagging.models import TaggedItem
 
@@ -33,7 +33,7 @@ class ZinniaCMSPluginBase(CMSPluginBase):
         """
         Base icon for Zinnia's plugins
         """
-        return settings.STATIC_URL + u'cmsplugin_zinnia/img/plugin.png'
+        return staticfiles_storage.url('cmsplugin_zinnia/img/plugin.png')
 
 
 class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
