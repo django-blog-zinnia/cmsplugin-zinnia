@@ -4,12 +4,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
 
-from tagging.models import Tag
-
-from zinnia.models import Entry
-from zinnia.models import Author
-from zinnia.models import Category
-
 from cmsplugin_zinnia.settings import PLUGINS_TEMPLATES
 
 TEMPLATES = [
@@ -23,16 +17,16 @@ class LatestEntriesPlugin(CMSPlugin):
     """CMS Plugin for displaying latest entries"""
 
     categories = models.ManyToManyField(
-        Category, verbose_name=_('categories'),
+        'zinnia.Category', verbose_name=_('categories'),
         blank=True, null=True)
     subcategories = models.BooleanField(
         _('include subcategories'), default=True,
         help_text=_('include the entries belonging the subcategories'))
     authors = models.ManyToManyField(
-        Author, verbose_name=_('authors'),
+        'zinnia.Author', verbose_name=_('authors'),
         blank=True, null=True)
     tags = models.ManyToManyField(
-        Tag, verbose_name=_('tags'),
+        'tagging.Tag', verbose_name=_('tags'),
         blank=True, null=True)
 
     number_of_entries = models.IntegerField(
@@ -63,7 +57,7 @@ class SelectedEntriesPlugin(CMSPlugin):
     """CMS Plugin for displaying custom entries"""
 
     entries = models.ManyToManyField(
-        Entry, verbose_name=_('entries'))
+        'zinnia.Entry', verbose_name=_('entries'))
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
