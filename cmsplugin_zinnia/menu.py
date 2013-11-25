@@ -1,6 +1,8 @@
 """Menus for cmsplugin_zinnia"""
 from django.utils.dateformat import format
 from django.core.urlresolvers import reverse
+from django.db.models.signals import post_save
+from django.db.models.signals import post_delete
 from django.utils.translation import ugettext_lazy as _
 
 from menus.base import Modifier
@@ -132,3 +134,16 @@ menu_pool.register_menu(CategoryMenu)
 menu_pool.register_menu(AuthorMenu)
 menu_pool.register_menu(TagMenu)
 menu_pool.register_modifier(EntryModifier)
+
+
+def invalidate_menu_cache(sender, **kwargs):
+    """Signal receiver to invalidate the menu_pool
+    cache when an entry is posted"""
+    menu_pool.clear()
+
+post_save.connect(
+    invalidate_menu_cache, sender=Entry,
+    dispatch_uid='zinnia.entry.postsave.invalidate_menu_cache')
+post_delete.connect(
+    invalidate_menu_cache, sender=Entry,
+    dispatch_uid='zinnia.entry.postdelete.invalidate_menu_cache')

@@ -1,13 +1,11 @@
 """Models of Zinnia CMS Plugins"""
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.db.models.signals import post_delete
 from django.utils.translation import ugettext_lazy as _
 
-from tagging.models import Tag
 from cms.models.pluginmodel import CMSPlugin
-from menus.menu_pool import menu_pool
+
+from tagging.models import Tag
 
 from zinnia.models import Entry
 from zinnia.models import Category
@@ -31,9 +29,11 @@ class LatestEntriesPlugin(CMSPlugin):
         _('include subcategories'), default=True,
         help_text=_('include the entries belonging the subcategories'))
     authors = models.ManyToManyField(
-        User, verbose_name=_('authors'), blank=True, null=True)
+        User, verbose_name=_('authors'),
+        blank=True, null=True)
     tags = models.ManyToManyField(
-        Tag, verbose_name=_('tags'), blank=True, null=True)
+        Tag, verbose_name=_('tags'),
+        blank=True, null=True)
 
     number_of_entries = models.IntegerField(
         _('number of entries'), default=5,
@@ -137,16 +137,3 @@ class CalendarEntriesPlugin(CMSPlugin):
         if self.year:
             name = '%s: %s/%s' % (name, self.year, self.month)
         return '%s' % name
-
-
-def invalidate_menu_cache(sender, **kwargs):
-    """Signal receiver to invalidate the menu_pool
-    cache when an entry is posted"""
-    menu_pool.clear()
-
-post_save.connect(
-    invalidate_menu_cache, sender=Entry,
-    dispatch_uid='zinnia.entry.postsave.invalidate_menu_cache')
-post_delete.connect(
-    invalidate_menu_cache, sender=Entry,
-    dispatch_uid='zinnia.entry.postdelete.invalidate_menu_cache')
