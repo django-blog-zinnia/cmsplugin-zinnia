@@ -1,6 +1,13 @@
+"""Initial migration"""
 from south.db import db
 from south.v2 import SchemaMigration
+
 from django.db import models
+
+from zinnia.migrations import user_name
+from zinnia.migrations import user_table
+from zinnia.migrations import user_orm_label
+from zinnia.migrations import user_model_label
 
 
 class Migration(SchemaMigration):
@@ -27,7 +34,7 @@ class Migration(SchemaMigration):
         db.create_table('cmsplugin_zinnia_latestentriesplugin_authors', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('latestentriesplugin', models.ForeignKey(orm['cmsplugin_zinnia.latestentriesplugin'], null=False)),
-            ('user', models.ForeignKey(orm['auth.user'], null=False))
+            ('user', models.ForeignKey(orm[user_orm_label], null=False))
         ))
         db.create_unique('cmsplugin_zinnia_latestentriesplugin_authors', ['latestentriesplugin_id', 'user_id'])
         # Adding M2M table for field tags on 'LatestEntriesPlugin'
@@ -88,8 +95,8 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
-        'auth.user': {
-            'Meta': {'object_name': 'User'},
+        user_model_label: {
+            'Meta': {'object_name': user_name, 'db_table': "'%s'" % user_table},
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
@@ -126,7 +133,7 @@ class Migration(SchemaMigration):
         },
         'cmsplugin_zinnia.latestentriesplugin': {
             'Meta': {'object_name': 'LatestEntriesPlugin', 'db_table': "'cmsplugin_latestentriesplugin'", '_ormbases': ['cms.CMSPlugin']},
-            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'}),
+            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['%s']" % user_orm_label, 'null': 'True', 'blank': 'True'}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['zinnia.Category']", 'null': 'True', 'blank': 'True'}),
             'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'number_of_entries': ('django.db.models.fields.IntegerField', [], {'default': '5'}),
@@ -178,7 +185,7 @@ class Migration(SchemaMigration):
         },
         'zinnia.entry': {
             'Meta': {'ordering': "['-creation_date']", 'object_name': 'Entry'},
-            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'entries'", 'blank': 'True', 'to': "orm['auth.User']"}),
+            'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'entries'", 'blank': 'True', 'to': "orm['%s']" % user_orm_label}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'entries'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['zinnia.Category']"}),
             'comment_enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'content': ('django.db.models.fields.TextField', [], {}),
