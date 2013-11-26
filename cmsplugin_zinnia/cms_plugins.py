@@ -197,7 +197,7 @@ class CMSSearchPlugin(ZinniaCMSPluginBase):
         """
         Alternative text of the plugin
         """
-        return unicode(self.name)
+        return self.name
 
 
 class CMSToolsPlugin(ZinniaCMSPluginBase):
@@ -220,7 +220,7 @@ class CMSToolsPlugin(ZinniaCMSPluginBase):
         """
         Alternative text of the plugin
         """
-        return unicode(self.name)
+        return self.name
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
