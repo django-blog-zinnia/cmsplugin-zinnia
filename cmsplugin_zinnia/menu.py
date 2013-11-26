@@ -18,11 +18,15 @@ from cmsplugin_zinnia.settings import HIDE_ENTRY_MENU
 
 
 class EntryMenu(CMSAttachMenu):
-    """Menu for the entries organized by archives dates"""
+    """
+    Menu for the entries organized by archives dates
+    """
     name = _('Zinnia Entry Menu')
 
     def get_nodes(self, request):
-        """Return menu's node for entries"""
+        """
+        Return menu's node for entries
+        """
         nodes = []
         archives = []
         attributes = {'hidden': HIDE_ENTRY_MENU}
@@ -64,11 +68,15 @@ class EntryMenu(CMSAttachMenu):
 
 
 class CategoryMenu(CMSAttachMenu):
-    """Menu for the categories"""
+    """
+    Menu for the categories
+    """
     name = _('Zinnia Category Menu')
 
     def get_nodes(self, request):
-        """Return menu's node for categories"""
+        """
+        Return menu's node for categories
+        """
         nodes = []
         nodes.append(NavigationNode(_('Categories'),
                                     reverse('zinnia_category_list'),
@@ -81,11 +89,15 @@ class CategoryMenu(CMSAttachMenu):
 
 
 class AuthorMenu(CMSAttachMenu):
-    """Menu for the authors"""
+    """
+    Menu for the authors
+    """
     name = _('Zinnia Author Menu')
 
     def get_nodes(self, request):
-        """Return menu's node for authors"""
+        """
+        Return menu's node for authors
+        """
         nodes = []
         nodes.append(NavigationNode(_('Authors'),
                                     reverse('zinnia_author_list'),
@@ -99,11 +111,15 @@ class AuthorMenu(CMSAttachMenu):
 
 
 class TagMenu(CMSAttachMenu):
-    """Menu for the tags"""
+    """
+    Menu for the tags
+    """
     name = _('Zinnia Tag Menu')
 
     def get_nodes(self, request):
-        """Return menu's node for tags"""
+        """
+        Return menu's node for tags
+        """
         nodes = []
         nodes.append(NavigationNode(_('Tags'), reverse('zinnia_tag_list'),
                                     'tags'))
@@ -116,11 +132,16 @@ class TagMenu(CMSAttachMenu):
 
 
 class EntryModifier(Modifier):
-    """Menu Modifier for entries,
-    hide the MenuEntry in navigation, not in breadcrumbs"""
+    """
+    Menu Modifier for entries,
+    hide the MenuEntry in navigation,
+    not in breadcrumbs
+    """
 
     def modify(self, request, nodes, namespace, root_id, post_cut, breadcrumb):
-        """Modify nodes of a menu"""
+        """
+        Modify nodes of a menu
+        """
         if breadcrumb:
             return nodes
         for node in nodes:
@@ -137,8 +158,10 @@ menu_pool.register_modifier(EntryModifier)
 
 
 def invalidate_menu_cache(sender, **kwargs):
-    """Signal receiver to invalidate the menu_pool
-    cache when an entry is posted"""
+    """
+    Signal receiver to invalidate the menu_pool
+    cache when an entry is posted
+    """
     menu_pool.clear()
 
 post_save.connect(

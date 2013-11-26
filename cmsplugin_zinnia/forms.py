@@ -6,7 +6,9 @@ from cmsplugin_zinnia.models import CalendarEntriesPlugin
 
 
 class CalendarEntriesAdminForm(forms.ModelForm):
-    """Admin Form for CalendarEntriesPlugin"""
+    """
+    Admin Form for CalendarEntriesPlugin
+    """
 
     def clean(self):
         data = self.cleaned_data

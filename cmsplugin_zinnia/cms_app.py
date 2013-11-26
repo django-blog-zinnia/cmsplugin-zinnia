@@ -24,7 +24,9 @@ for menu_string in APP_MENUS:
 
 
 class ZinniaApphook(CMSApp):
-    """Zinnia's Apphook"""
+    """
+    Zinnia's Apphook
+    """
     name = _('Zinnia Weblog')
     urls = APP_URLS
     menus = app_menus

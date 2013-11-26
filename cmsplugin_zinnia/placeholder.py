@@ -9,7 +9,9 @@ from zinnia.models_bases.entry import AbstractEntry
 
 
 class EntryPlaceholder(AbstractEntry):
-    """Entry with a Placeholder to edit content"""
+    """
+    Entry with a Placeholder to edit content
+    """
 
     content_placeholder = PlaceholderField('content')
 
@@ -45,5 +47,7 @@ class EntryPlaceholder(AbstractEntry):
         return render_placeholder(self.content_placeholder, context)
 
     class Meta(AbstractEntry.Meta):
-        """EntryPlaceholder's Meta"""
+        """
+        EntryPlaceholder's Meta
+        """
         abstract = True

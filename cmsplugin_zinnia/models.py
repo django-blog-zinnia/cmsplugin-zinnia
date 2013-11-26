@@ -14,7 +14,9 @@ TEMPLATES = [
 
 
 class LatestEntriesPlugin(CMSPlugin):
-    """CMS Plugin for displaying latest entries"""
+    """
+    CMS Plugin for displaying latest entries
+    """
 
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
@@ -39,12 +41,16 @@ class LatestEntriesPlugin(CMSPlugin):
 
     @property
     def render_template(self):
-        """Override render_template to use
-        the template_to_render attribute"""
+        """
+        Override render_template to use
+        the template_to_render attribute
+        """
         return self.template_to_render
 
     def copy_relations(self, old_instance):
-        """Duplicate ManyToMany relations on plugin copy"""
+        """
+        Duplicate ManyToMany relations on plugin copy
+        """
         self.tags = old_instance.tags.all()
         self.authors = old_instance.authors.all()
         self.categories = old_instance.categories.all()
@@ -54,7 +60,9 @@ class LatestEntriesPlugin(CMSPlugin):
 
 
 class SelectedEntriesPlugin(CMSPlugin):
-    """CMS Plugin for displaying custom entries"""
+    """
+    CMS Plugin for displaying custom entries
+    """
 
     entries = models.ManyToManyField(
         'zinnia.Entry', verbose_name=_('entries'))
@@ -65,12 +73,16 @@ class SelectedEntriesPlugin(CMSPlugin):
 
     @property
     def render_template(self):
-        """Override render_template to use
-        the template_to_render attribute"""
+        """
+        Override render_template to use
+        the template_to_render attribute
+        """
         return self.template_to_render
 
     def copy_relations(self, old_instance):
-        """Duplicate ManyToMany relations on plugin copy"""
+        """
+        Duplicate ManyToMany relations on plugin copy
+        """
         self.entries = old_instance.entries.all()
 
     def __unicode__(self):
@@ -78,7 +90,9 @@ class SelectedEntriesPlugin(CMSPlugin):
 
 
 class RandomEntriesPlugin(CMSPlugin):
-    """CMS Plugin for displaying random entries"""
+    """
+    CMS Plugin for displaying random entries
+    """
 
     number_of_entries = models.IntegerField(
         _('number of entries'), default=5)
@@ -92,8 +106,10 @@ class RandomEntriesPlugin(CMSPlugin):
 
 
 class QueryEntriesPlugin(CMSPlugin):
-    """CMS Plugin for displaying entries
-    based on a search pattern"""
+    """
+    CMS Plugin for displaying entries
+    based on a search pattern
+    """
 
     query = models.CharField(
         _('query'), max_length=250,
@@ -111,8 +127,10 @@ class QueryEntriesPlugin(CMSPlugin):
 
     @property
     def render_template(self):
-        """Override render_template to use
-        the template_to_render attribute"""
+        """
+        Override render_template to use
+        the template_to_render attribute
+        """
         return self.template_to_render
 
     def __unicode__(self):
@@ -120,8 +138,10 @@ class QueryEntriesPlugin(CMSPlugin):
 
 
 class CalendarEntriesPlugin(CMSPlugin):
-    """CMS Plugin for displaying a calendar with
-    published entries"""
+    """
+    CMS Plugin for displaying a calendar with
+    published entries
+    """
 
     year = models.IntegerField(_('year'), null=True, blank=True)
     month = models.IntegerField(_('month'), null=True, blank=True)
