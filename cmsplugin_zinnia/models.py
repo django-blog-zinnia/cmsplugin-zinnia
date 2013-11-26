@@ -1,6 +1,7 @@
 """Models of Zinnia CMS Plugins"""
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 from cms.models.pluginmodel import CMSPlugin
 
@@ -13,6 +14,7 @@ TEMPLATES = [
     + PLUGINS_TEMPLATES
 
 
+@python_2_unicode_compatible
 class LatestEntriesPlugin(CMSPlugin):
     """
     CMS Plugin for displaying latest entries
@@ -55,10 +57,11 @@ class LatestEntriesPlugin(CMSPlugin):
         self.authors = old_instance.authors.all()
         self.categories = old_instance.categories.all()
 
-    def __unicode__(self):
+    def __str__(self):
         return _('%s entries') % self.number_of_entries
 
 
+@python_2_unicode_compatible
 class SelectedEntriesPlugin(CMSPlugin):
     """
     CMS Plugin for displaying custom entries
@@ -85,10 +88,11 @@ class SelectedEntriesPlugin(CMSPlugin):
         """
         self.entries = old_instance.entries.all()
 
-    def __unicode__(self):
+    def __str__(self):
         return _('%s entries') % self.entries.count()
 
 
+@python_2_unicode_compatible
 class RandomEntriesPlugin(CMSPlugin):
     """
     CMS Plugin for displaying random entries
@@ -101,10 +105,11 @@ class RandomEntriesPlugin(CMSPlugin):
         max_length=250, choices=TEMPLATES,
         help_text=_('template used to display the plugin'))
 
-    def __unicode__(self):
+    def __str__(self):
         return _('%s entries') % self.number_of_entries
 
 
+@python_2_unicode_compatible
 class QueryEntriesPlugin(CMSPlugin):
     """
     CMS Plugin for displaying entries
@@ -133,10 +138,11 @@ class QueryEntriesPlugin(CMSPlugin):
         """
         return self.template_to_render
 
-    def __unicode__(self):
+    def __str__(self):
         return _('%s entries') % self.number_of_entries
 
 
+@python_2_unicode_compatible
 class CalendarEntriesPlugin(CMSPlugin):
     """
     CMS Plugin for displaying a calendar with
@@ -146,7 +152,7 @@ class CalendarEntriesPlugin(CMSPlugin):
     year = models.IntegerField(_('year'), null=True, blank=True)
     month = models.IntegerField(_('month'), null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         name = _('Calendar entries')
         if self.year:
             name = '%s: %s/%s' % (name, self.year, self.month)
