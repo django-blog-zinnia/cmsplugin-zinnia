@@ -47,9 +47,11 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
     fieldsets = (
         (None, {'fields': ('number_of_entries',
                            'template_to_render')}),
-        (_('Filters'), {'fields': (('featured', 'categories', 'subcategories'),
-                                   'authors', 'tags'),
-                        'classes': ('collapse',)}),)
+        (_('Filters'), {'fields': (
+            'featured',
+            ('categories', 'subcategories'),
+            'authors', 'tags'),
+         'classes': ('collapse',)}),)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         """
