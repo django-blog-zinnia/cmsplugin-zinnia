@@ -20,6 +20,11 @@ class LatestEntriesPlugin(CMSPlugin):
     CMS Plugin for displaying latest entries
     """
 
+    featured = models.NullBooleanField(
+        _('featured'),
+        blank=True, null=True,
+        choices=((True, _('Yes')),
+                 (False, _('No'))))
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
         blank=True, null=True)
