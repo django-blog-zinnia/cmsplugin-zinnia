@@ -1,18 +1,15 @@
 """Views for the cmsplugin_zinnia demo"""
-from django.conf import settings
 from django.template import loader
-from django.template import Context
 from django.http import HttpResponseServerError
+
+from sekizai.context import SekizaiContext
 
 
 def server_error(request, template_name='500.html'):
     """
     500 error handler.
-    Templates: `500.html`
-    Context:
-    STATIC_URL
-      Path of static media (e.g. "media.example.org")
+    Return a SekizaiContext to avoid another 500 error.
     """
     t = loader.get_template(template_name)
     return HttpResponseServerError(
-        t.render(Context({'STATIC_URL': settings.STATIC_URL})))
+        t.render(SekizaiContext()))
