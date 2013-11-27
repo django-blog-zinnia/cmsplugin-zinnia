@@ -21,11 +21,10 @@ class LatestEntriesPlugin(CMSPlugin):
     """
 
     featured = models.NullBooleanField(
-        choices=(
-            (True, 'Yes'),
-            (False, 'No'),
-        ),
-        blank=True, null=True)
+        _('featured'),
+        blank=True, null=True,
+        choices=((True, _('Yes')),
+                 (False, _('No'))))
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
         blank=True, null=True)
