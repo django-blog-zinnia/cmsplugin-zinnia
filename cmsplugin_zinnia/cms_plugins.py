@@ -47,7 +47,7 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
     fieldsets = (
         (None, {'fields': ('number_of_entries',
                            'template_to_render')}),
-        (_('Filters'), {'fields': (('categories', 'subcategories'),
+        (_('Filters'), {'fields': (('featured', 'categories', 'subcategories'),
                                    'authors', 'tags'),
                         'classes': ('collapse',)}),)
 
@@ -81,6 +81,9 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
         if instance.tags.count():
             entries = TaggedItem.objects.get_union_by_model(
                 entries, instance.tags.all())
+
+        if instance.featured is not None:
+            entries = entries.filter(featured=instance.featured)
 
         entries = entries.distinct()
         if instance.number_of_entries:
