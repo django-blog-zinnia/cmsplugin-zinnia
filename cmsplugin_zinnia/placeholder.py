@@ -42,7 +42,13 @@ class EntryPlaceholder(AbstractEntry):
         https://github.com/Fantomas42/cmsplugin-zinnia/issues/3
         """
         context = self.acquire_context()
-        return render_placeholder(self.content_placeholder, context)
+        try:
+            return render_placeholder(self.content_placeholder, context)
+        except AttributeError:
+            # Should happen when ``context`` and ``request``
+            # have not been found in the stack.
+            pass
+        return self.content  # Ultimate fallback
 
     class Meta(AbstractEntry.Meta):
         """EntryPlaceholder's Meta"""
