@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for object in entries %}
-  {% include object.content_template with object_content=object.html_content|truncatewords_html:100|safe continue_reading=1 %}
+  {% include object.content_template with object_content=object.html_preview continue_reading=1 %}
 {% empty %}
   <p class="notice">{% trans "No entries yet." %}</p>
 {% endfor %}
