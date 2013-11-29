@@ -38,10 +38,10 @@ class LatestEntriesPlugin(CMSPlugin):
         'tagging.Tag', verbose_name=_('tags'),
         blank=True, null=True)
 
-    number_of_entries = models.IntegerField(
+    number_of_entries = models.PositiveIntegerField(
         _('number of entries'), default=5,
         help_text=_('0 means all the entries'))
-    offset = models.IntegerField(
+    offset = models.PositiveIntegerField(
         _('offset'), default=0,
         help_text=_('offset used to display entries'))
     template_to_render = models.CharField(
@@ -106,7 +106,7 @@ class RandomEntriesPlugin(CMSPlugin):
     CMS Plugin for displaying random entries
     """
 
-    number_of_entries = models.IntegerField(
+    number_of_entries = models.PositiveIntegerField(
         _('number of entries'), default=5)
     template_to_render = models.CharField(
         _('template'), blank=True,
@@ -130,7 +130,7 @@ class QueryEntriesPlugin(CMSPlugin):
             'You can use - to exclude words or phrases, &quot;double '
             'quotes&quot; for exact phrases and the AND/OR boolean '
             'operators combined with parenthesis for complex queries.'))
-    number_of_entries = models.IntegerField(
+    number_of_entries = models.PositiveIntegerField(
         _('number of entries'), default=5,
         help_text=_('0 means all the entries'))
     template_to_render = models.CharField(
@@ -157,8 +157,8 @@ class CalendarEntriesPlugin(CMSPlugin):
     published entries
     """
 
-    year = models.IntegerField(_('year'), null=True, blank=True)
-    month = models.IntegerField(_('month'), null=True, blank=True)
+    year = models.PositiveIntegerField(_('year'), null=True, blank=True)
+    month = models.PositiveIntegerField(_('month'), null=True, blank=True)
 
     def __str__(self):
         name = _('Calendar entries')
