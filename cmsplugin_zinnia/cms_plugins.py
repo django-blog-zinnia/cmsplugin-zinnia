@@ -45,8 +45,9 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
     render_template = 'cmsplugin_zinnia/entry_list.html'
     filter_horizontal = ['categories', 'authors', 'tags']
     fieldsets = (
-        (None, {'fields': ('number_of_entries',
-                           'template_to_render')}),
+        (None, {'fields': (
+            ('number_of_entries', 'offset'),
+            'template_to_render')}),
         (_('Filters'), {'fields': (
             'featured',
             ('categories', 'subcategories'),
@@ -88,6 +89,8 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
             entries = entries.filter(featured=instance.featured)
 
         entries = entries.distinct()
+        if instance.offset:
+            entries = entries[instance.offset:]
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
         context.update({'entries': entries,

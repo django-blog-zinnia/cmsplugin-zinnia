@@ -41,6 +41,9 @@ class LatestEntriesPlugin(CMSPlugin):
     number_of_entries = models.IntegerField(
         _('number of entries'), default=5,
         help_text=_('0 means all the entries'))
+    offset = models.IntegerField(
+        _('offset'), default=0,
+        help_text=_('offset used to display entries'))
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
