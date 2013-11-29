@@ -14,13 +14,16 @@ package:
 	@python setup.py sdist
 
 translations:
+	@echo "$(COLOR)* Linking demo templates$(NO_COLOR)"
+	@ln -s ../../demo_cmsplugin_zinnia/templates/cms/ cmsplugin_zinnia/templates/
 	@echo "$(COLOR)* Generating english translation$(NO_COLOR)"
 	@cd cmsplugin_zinnia && ../bin/demo makemessages --extension=.html,.txt -l en
 	@echo "$(COLOR)* Pushing translation to Transifex$(NO_COLOR)"
-	@rm -rf .tox
 	@tx push -s
 	@echo "$(COLOR)* Remove english translation$(NO_COLOR)"
 	@rm -rf cmsplugin_zinnia/locale/en/
+	@echo "$(COLOR)* Remove symbolic links$(NO_COLOR)"
+	@rm -rf cmsplugin_zinnia/templates/cms
 
 kwalitee:
 	@echo "$(COLOR)* Running flake8$(NO_COLOR)"
