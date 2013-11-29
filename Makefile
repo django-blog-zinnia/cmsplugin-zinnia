@@ -17,7 +17,7 @@ translations:
 	@echo "$(COLOR)* Linking demo templates$(NO_COLOR)"
 	@ln -s ../../demo_cmsplugin_zinnia/templates/cms/ cmsplugin_zinnia/templates/
 	@echo "$(COLOR)* Generating english translation$(NO_COLOR)"
-	@cd cmsplugin_zinnia && ../bin/demo makemessages --extension=.html,.txt -l en
+	@cd cmsplugin_zinnia && ../bin/demo makemessages --extension=.html,.txt -s -l en
 	@echo "$(COLOR)* Pushing translation to Transifex$(NO_COLOR)"
 	@tx push -s
 	@echo "$(COLOR)* Remove english translation$(NO_COLOR)"
