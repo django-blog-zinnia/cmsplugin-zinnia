@@ -237,7 +237,7 @@ class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
     """
     model = CMSPlugin
     name = _('Published categories')
-    render_template = 'cmsplugin_zinnia/categories.html'
+    render_template = 'cmsplugin_zinnia/categories_published.html'
 
     def render(self, context, instance, placeholder):
         """
