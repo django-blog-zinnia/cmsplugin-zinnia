@@ -232,17 +232,18 @@ class CMSToolsPlugin(ZinniaCMSPluginBase):
         return self.name
 
 
-class CMSCategoriesPlugin(CMSPluginBase):
-    """Plugin for including Zinnia's categories """
-    module = 'Zinnia'
+class CMSCategoriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including Zinnia's published categories
+    """
     model = CMSPlugin
-    name = _('Categories Plugin')
+    name = _('Categories')
     render_template = 'cmsplugin_zinnia/categories.html'
-    text_enabled = True
 
     def render(self, context, instance, placeholder):
-        """Update the context with plugin's data"""
-        # update context with categories list
+        """
+        Update the context with plugin's data
+        """
         context.update(get_categories(context, template=self.render_template))
         context.update({'object': instance,
                         'placeholder': placeholder})
