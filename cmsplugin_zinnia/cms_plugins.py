@@ -299,6 +299,23 @@ class CMSTagCloudPlugin(ZinniaCMSPluginBase):
         return context
 
 
+class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including an archive tree
+    """
+    model = CMSPlugin
+    name = _('Archives tree')
+    render_template = 'cmsplugin_zinnia/archives_tree.html'
+
+    def render(self, context, instance, placeholder):
+        """
+        Update the context with plugin's data
+        """
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
@@ -310,3 +327,4 @@ plugin_pool.register_plugin(CMSTreeCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedAuthorsPlugin)
 plugin_pool.register_plugin(CMSTagCloudPlugin)
+plugin_pool.register_plugin(CMSArchivesTreePlugin)
