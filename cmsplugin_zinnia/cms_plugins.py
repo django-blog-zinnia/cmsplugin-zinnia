@@ -282,6 +282,23 @@ class CMSPublishedAuthorsPlugin(ZinniaCMSPluginBase):
         return context
 
 
+class CMSTagCloudPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including Zinnia's tag cloud
+    """
+    model = CMSPlugin
+    name = _('Tag cloud')
+    render_template = 'cmsplugin_zinnia/tag_cloud.html'
+
+    def render(self, context, instance, placeholder):
+        """
+        Update the context with plugin's data
+        """
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
@@ -292,3 +309,4 @@ plugin_pool.register_plugin(CMSToolsPlugin)
 plugin_pool.register_plugin(CMSTreeCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedAuthorsPlugin)
+plugin_pool.register_plugin(CMSTagCloudPlugin)
