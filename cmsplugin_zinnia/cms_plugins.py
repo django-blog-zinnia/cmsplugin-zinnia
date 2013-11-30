@@ -248,6 +248,23 @@ class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
         return context
 
 
+class CMSTreeCategoriesPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including Zinnia's categories as a tree
+    """
+    model = CMSPlugin
+    name = _('Categories tree')
+    render_template = 'cmsplugin_zinnia/categories_tree.html'
+
+    def render(self, context, instance, placeholder):
+        """
+        Update the context with plugin's data
+        """
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
@@ -255,4 +272,5 @@ plugin_pool.register_plugin(CMSQueryEntriesPlugin)
 plugin_pool.register_plugin(CMSCalendarEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)
+plugin_pool.register_plugin(CMSTreeCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedCategoriesPlugin)
