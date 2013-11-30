@@ -13,7 +13,6 @@ from cms.models.pluginmodel import CMSPlugin
 from zinnia.models import Entry
 from zinnia.models import Author
 from zinnia.managers import tags_published
-from zinnia.templatetags.zinnia_tags import get_categories
 
 from cmsplugin_zinnia.models import RandomEntriesPlugin
 from cmsplugin_zinnia.models import LatestEntriesPlugin
@@ -244,7 +243,6 @@ class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context.update(get_categories(context, template=self.render_template))
         context.update({'object': instance,
                         'placeholder': placeholder})
         return context
