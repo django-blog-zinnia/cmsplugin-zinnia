@@ -232,12 +232,12 @@ class CMSToolsPlugin(ZinniaCMSPluginBase):
         return self.name
 
 
-class CMSCategoriesPlugin(ZinniaCMSPluginBase):
+class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including Zinnia's published categories
     """
     model = CMSPlugin
-    name = _('Categories')
+    name = _('Published categories')
     render_template = 'cmsplugin_zinnia/categories.html'
 
     def render(self, context, instance, placeholder):
@@ -257,4 +257,4 @@ plugin_pool.register_plugin(CMSQueryEntriesPlugin)
 plugin_pool.register_plugin(CMSCalendarEntriesPlugin)
 plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)
-plugin_pool.register_plugin(CMSCategoriesPlugin)
+plugin_pool.register_plugin(CMSPublishedCategoriesPlugin)
