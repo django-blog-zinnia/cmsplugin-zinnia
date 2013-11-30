@@ -265,6 +265,23 @@ class CMSTreeCategoriesPlugin(ZinniaCMSPluginBase):
         return context
 
 
+class CMSPublishedAuthorsPlugin(ZinniaCMSPluginBase):
+    """
+    Plugin for including Zinnia's published authors
+    """
+    model = CMSPlugin
+    name = _('Published authors')
+    render_template = 'cmsplugin_zinnia/authors_published.html'
+
+    def render(self, context, instance, placeholder):
+        """
+        Update the context with plugin's data
+        """
+        context.update({'object': instance,
+                        'placeholder': placeholder})
+        return context
+
+
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
 plugin_pool.register_plugin(CMSSelectedEntriesPlugin)
 plugin_pool.register_plugin(CMSRandomEntriesPlugin)
@@ -274,3 +291,4 @@ plugin_pool.register_plugin(CMSSearchPlugin)
 plugin_pool.register_plugin(CMSToolsPlugin)
 plugin_pool.register_plugin(CMSTreeCategoriesPlugin)
 plugin_pool.register_plugin(CMSPublishedCategoriesPlugin)
+plugin_pool.register_plugin(CMSPublishedAuthorsPlugin)
