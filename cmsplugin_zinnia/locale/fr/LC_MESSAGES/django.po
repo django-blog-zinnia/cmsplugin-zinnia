@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cmsplugin-zinnia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-29 16:01+0100\n"
-"PO-Revision-Date: 2013-11-29 15:02+0000\n"
+"POT-Creation-Date: 2013-12-01 19:19+0100\n"
+"PO-Revision-Date: 2013-12-01 18:22+0000\n"
 "Last-Translator: Julien Fache <fantomas42@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/cmsplugin-zinnia/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -61,6 +61,26 @@ msgstr "Formulaire de recherche d'articles"
 #: cms_plugins.py:216
 msgid "Administration tools"
 msgstr "Outils d'administration"
+
+#: cms_plugins.py:239
+msgid "Published categories"
+msgstr "Catégories publiées"
+
+#: cms_plugins.py:256
+msgid "Categories tree"
+msgstr "Arbre des catégories"
+
+#: cms_plugins.py:273
+msgid "Published authors"
+msgstr "Auteurs publiés"
+
+#: cms_plugins.py:290
+msgid "Tag cloud"
+msgstr "Nuage de tag"
+
+#: cms_plugins.py:307
+msgid "Archives tree"
+msgstr "Arbre d'archives"
 
 #: forms.py:17
 msgid "Year and month must defined together."
