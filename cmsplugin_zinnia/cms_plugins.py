@@ -176,14 +176,6 @@ class CMSCalendarEntriesPlugin(ZinniaCMSPluginBase):
                          "the current month will be used.")}),)
     form = CalendarEntriesAdminForm
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
 
 class CMSSearchPlugin(ZinniaCMSPluginBase):
     """
