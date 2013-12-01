@@ -93,9 +93,10 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
             entries = entries[instance.offset:]
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
-        context.update({'entries': entries,
-                        'object': instance,
-                        'placeholder': placeholder})
+
+        context = super(CMSLatestEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = entries
         return context
 
 
@@ -113,9 +114,9 @@ class CMSSelectedEntriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context.update({'entries': instance.entries.all(),
-                        'object': instance,
-                        'placeholder': placeholder})
+        context = super(CMSSelectedEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = instance.entries.all()
         return context
 
 
@@ -132,11 +133,10 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context.update(
-            {'object': instance,
-             'placeholder': placeholder,
-             'template_to_render': str(instance.template_to_render) or
-             'zinnia/tags/random_entries.html'})
+        context = super(CMSSelectedEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['template_to_render'] = (str(instance.template_to_render) or
+                                         'zinnia/tags/random_entries.html')
         return context
 
 
@@ -157,9 +157,9 @@ class CMSQueryEntriesPlugin(ZinniaCMSPluginBase):
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
 
-        context.update({'entries': entries,
-                        'object': instance,
-                        'placeholder': placeholder})
+        context = super(CMSQueryEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = entries
         return context
 
 
@@ -176,14 +176,6 @@ class CMSCalendarEntriesPlugin(ZinniaCMSPluginBase):
                          "the current month will be used.")}),)
     form = CalendarEntriesAdminForm
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
 
 class CMSSearchPlugin(ZinniaCMSPluginBase):
     """
@@ -192,14 +184,6 @@ class CMSSearchPlugin(ZinniaCMSPluginBase):
     model = CMSPlugin
     name = _('Entries search form')
     render_template = 'cmsplugin_zinnia/search_form.html'
-
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
 
     def icon_alt(self, instance):
         """
@@ -216,14 +200,6 @@ class CMSToolsPlugin(ZinniaCMSPluginBase):
     name = _('Administration tools')
     render_template = 'cmsplugin_zinnia/tools.html'
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
     def icon_alt(self, instance):
         """
         Alternative text of the plugin
@@ -239,14 +215,6 @@ class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
     name = _('Published categories')
     render_template = 'cmsplugin_zinnia/categories_published.html'
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
 
 class CMSTreeCategoriesPlugin(ZinniaCMSPluginBase):
     """
@@ -255,14 +223,6 @@ class CMSTreeCategoriesPlugin(ZinniaCMSPluginBase):
     model = CMSPlugin
     name = _('Categories tree')
     render_template = 'cmsplugin_zinnia/categories_tree.html'
-
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
 
 
 class CMSPublishedAuthorsPlugin(ZinniaCMSPluginBase):
@@ -273,14 +233,6 @@ class CMSPublishedAuthorsPlugin(ZinniaCMSPluginBase):
     name = _('Published authors')
     render_template = 'cmsplugin_zinnia/authors_published.html'
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
 
 class CMSTagCloudPlugin(ZinniaCMSPluginBase):
     """
@@ -290,14 +242,6 @@ class CMSTagCloudPlugin(ZinniaCMSPluginBase):
     name = _('Tag cloud')
     render_template = 'cmsplugin_zinnia/tag_cloud.html'
 
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
-
 
 class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
     """
@@ -306,14 +250,6 @@ class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
     model = CMSPlugin
     name = _('Archives tree')
     render_template = 'cmsplugin_zinnia/archives_tree.html'
-
-    def render(self, context, instance, placeholder):
-        """
-        Update the context with plugin's data
-        """
-        context.update({'object': instance,
-                        'placeholder': placeholder})
-        return context
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
