@@ -94,7 +94,7 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
         context.update({'entries': entries,
-                        'object': instance,
+                        'instance': instance,
                         'placeholder': placeholder})
         return context
 
@@ -114,7 +114,7 @@ class CMSSelectedEntriesPlugin(ZinniaCMSPluginBase):
         Update the context with plugin's data
         """
         context.update({'entries': instance.entries.all(),
-                        'object': instance,
+                        'instance': instance,
                         'placeholder': placeholder})
         return context
 
@@ -133,7 +133,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         Update the context with plugin's data
         """
         context.update(
-            {'object': instance,
+            {'instance': instance,
              'placeholder': placeholder,
              'template_to_render': str(instance.template_to_render) or
              'zinnia/tags/random_entries.html'})
@@ -158,7 +158,7 @@ class CMSQueryEntriesPlugin(ZinniaCMSPluginBase):
             entries = entries[:instance.number_of_entries]
 
         context.update({'entries': entries,
-                        'object': instance,
+                        'instance': instance,
                         'placeholder': placeholder})
         return context
 
