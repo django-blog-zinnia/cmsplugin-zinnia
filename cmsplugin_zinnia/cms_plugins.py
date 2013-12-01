@@ -93,9 +93,10 @@ class CMSLatestEntriesPlugin(ZinniaCMSPluginBase):
             entries = entries[instance.offset:]
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
-        context.update({'entries': entries,
-                        'instance': instance,
-                        'placeholder': placeholder})
+
+        context = super(CMSLatestEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = entries
         return context
 
 
@@ -113,9 +114,9 @@ class CMSSelectedEntriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context.update({'entries': instance.entries.all(),
-                        'instance': instance,
-                        'placeholder': placeholder})
+        context = super(CMSSelectedEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = instance.entries.all()
         return context
 
 
@@ -132,11 +133,10 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context.update(
-            {'instance': instance,
-             'placeholder': placeholder,
-             'template_to_render': str(instance.template_to_render) or
-             'zinnia/tags/random_entries.html'})
+        context = super(CMSSelectedEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['template_to_render'] = (str(instance.template_to_render) or
+                                         'zinnia/tags/random_entries.html')
         return context
 
 
@@ -157,9 +157,9 @@ class CMSQueryEntriesPlugin(ZinniaCMSPluginBase):
         if instance.number_of_entries:
             entries = entries[:instance.number_of_entries]
 
-        context.update({'entries': entries,
-                        'instance': instance,
-                        'placeholder': placeholder})
+        context = super(CMSQueryEntriesPlugin, self).render(
+            context, instance, placeholder)
+        context['entries'] = entries
         return context
 
 
