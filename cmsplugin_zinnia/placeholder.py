@@ -1,14 +1,17 @@
 """Placeholder model for Zinnia"""
 import inspect
 
+from django.template.context import RequestContext
 from cms.models.fields import PlaceholderField
 from cms.plugin_rendering import render_placeholder
 
-from zinnia.models.entry import EntryAbstractClass
+from zinnia.models_bases.entry import AbstractEntry
 
 
-class EntryPlaceholder(EntryAbstractClass):
-    """Entry with a Placeholder to edit content"""
+class EntryPlaceholder(AbstractEntry):
+    """
+    Entry with a Placeholder to edit content
+    """
 
     content_placeholder = PlaceholderField('content')
 
@@ -19,14 +22,20 @@ class EntryPlaceholder(EntryAbstractClass):
         but if you have a better way, you are welcome !
         """
         frame = None
+        request = None
+
         try:
             for f in inspect.stack()[1:]:
                 frame = f[0]
                 args, varargs, keywords, alocals = inspect.getargvalues(frame)
+                if not request and 'request' in args:
+                    request = alocals['request']
                 if 'context' in args:
                     return alocals['context']
         finally:
             del frame
+
+        return RequestContext(request)
 
     @property
     def html_content(self):
@@ -35,8 +44,16 @@ class EntryPlaceholder(EntryAbstractClass):
         https://github.com/Fantomas42/cmsplugin-zinnia/issues/3
         """
         context = self.acquire_context()
-        return render_placeholder(self.content_placeholder, context)
+        try:
+            return render_placeholder(self.content_placeholder, context)
+        except AttributeError:
+            # Should happen when ``context`` and ``request``
+            # have not been found in the stack.
+            pass
+        return self.content  # Ultimate fallback
 
-    class Meta(EntryAbstractClass.Meta):
-        """EntryPlaceholder's Meta"""
+    class Meta(AbstractEntry.Meta):
+        """
+        EntryPlaceholder's Meta
+        """
         abstract = True

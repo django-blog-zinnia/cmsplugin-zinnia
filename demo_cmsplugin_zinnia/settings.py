@@ -6,6 +6,7 @@ gettext = lambda s: s
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {'default':
              {'ENGINE': 'django.db.backends.sqlite3',
@@ -19,8 +20,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 SECRET_KEY = 'fgh1rzme%sfv3#n+fb7h948yuv3(pt63abhi12_t7e^^5q8dyw'
 
@@ -42,6 +41,7 @@ LANGUAGES = (
     ('hu', gettext('Hungarian')),
     ('cs', gettext('Czech')),
     ('sk', gettext('Slovak')),
+    ('lt', gettext('Lithuanian')),
     ('ru', gettext('Russian')),
     ('pl', gettext('Polish')),
     ('eu', gettext('Basque')),

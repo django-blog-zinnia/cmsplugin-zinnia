@@ -35,19 +35,35 @@ Just add this line in your project's settings to use it. ::
 
   ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
+.. note::
+   If you are using South for migrating your models, you have to keep in
+   mind that the default migrations bundled with Zinnia do not reflect
+   the addition made by the ``EntryPlaceholder`` model.
+
+   A solution to initialize correctly the database can be: ::
+
+     $ python manage.py syncdb --all
+     $ python manage.py migrate --fake
+
 .. _settings:
 
 Settings
 ========
 
+CMSPLUGIN_ZINNIA_APP_URLS
+-------------------------
+**Default value:** ``['zinnia.urls']``
+
+The URLsets used for by the Zinnia AppHook.
+
 CMSPLUGIN_ZINNIA_APP_MENUS
 --------------------------
 **Default value:** ::
 
-  ('cmsplugin_zinnia.menu.EntryMenu',
+  ['cmsplugin_zinnia.menu.EntryMenu',
    'cmsplugin_zinnia.menu.CategoryMenu',
    'cmsplugin_zinnia.menu.TagMenu',
-   'cmsplugin_zinnia.menu.AuthorMenu')
+   'cmsplugin_zinnia.menu.AuthorMenu']
 
 List of strings representing the path to the `Menu` class provided by the
 Zinnia AppHook.
@@ -60,14 +76,43 @@ Boolean used for displaying or not the entries in the ``EntryMenu`` object.
 
 CMSPLUGIN_ZINNIA_TEMPLATES
 --------------------------
-**Default value:** ``()`` (Empty tuple)
+**Default value:** ``[]`` (Empty list)
 
 List of tuple for extending the plugins rendering templates.
+
+Example: ::
+
+  CMSPLUGIN_ZINNIA_TEMPLATES = [
+    ('entry_custom.html', 'Entry custom'),
+    ('entry_custom_bis.html', 'Entry custom bis')
+    ]
 
 .. _changelog:
 
 Changelog
 =========
+
+0.5
+---
+- Archives plugin
+- Tag cloud plugin
+- Author list plugin
+- Categories plugins
+- Featured entries filter
+- Offset for latest entries
+- Documentation improvements
+- Configurable apphook's urls
+- Support custom auth.User model
+- Fix translations of the plugins
+- Fix HTML rendering without context
+- Compatibility with Django v1.5
+- Compatibility with Zinnia v0.13
+- Updating the buildout installation
+
+0.4.1
+-----
+
+- Compatibility fix for Django-CMS 2.2+
 
 0.4
 ---

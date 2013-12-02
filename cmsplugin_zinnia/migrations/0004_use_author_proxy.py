@@ -1,4 +1,4 @@
-"""Query entries plugin"""
+"""Move constraint since using zinnia.Author instead of auth.User"""
 from south.db import db
 from south.v2 import SchemaMigration
 
@@ -11,18 +11,20 @@ from zinnia.migrations import user_model_label
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'QueryEntriesPlugin'
-        db.create_table('cmsplugin_queryentriesplugin', (
-            ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('query', self.gf('django.db.models.fields.CharField')(max_length=250)),
-            ('number_of_entries', self.gf('django.db.models.fields.IntegerField')(default=5)),
-            ('template_to_render', self.gf('django.db.models.fields.CharField')(max_length=250, blank=True)),
-        ))
-        db.send_create_signal('cmsplugin_zinnia', ['QueryEntriesPlugin'])
+        db.delete_unique('cmsplugin_zinnia_latestentriesplugin_authors',
+                         ['latestentriesplugin_id', 'user_id'])
+        db.rename_column('cmsplugin_zinnia_latestentriesplugin_authors',
+                         'user_id', 'author_id')
+        db.create_unique('cmsplugin_zinnia_latestentriesplugin_authors',
+                         ['latestentriesplugin_id', 'author_id'])
 
     def backwards(self, orm):
-        # Deleting model 'QueryEntriesPlugin'
-        db.delete_table('cmsplugin_queryentriesplugin')
+        db.delete_unique('cmsplugin_zinnia_latestentriesplugin_authors',
+                         ['latestentriesplugin_id', 'author_id'])
+        db.rename_column('cmsplugin_zinnia_latestentriesplugin_authors',
+                         'author_id', 'user_id')
+        db.create_unique('cmsplugin_zinnia_latestentriesplugin_authors',
+                         ['latestentriesplugin_id', 'user_id'])
 
     models = {
         'auth.group': {
@@ -73,6 +75,12 @@ class Migration(SchemaMigration):
             'default_width': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
+        },
+        'cmsplugin_zinnia.calendarentriesplugin': {
+            'Meta': {'object_name': 'CalendarEntriesPlugin', 'db_table': "'cmsplugin_calendarentriesplugin'", '_ormbases': ['cms.CMSPlugin']},
+            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'month': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'year': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
         },
         'cmsplugin_zinnia.latestentriesplugin': {
             'Meta': {'object_name': 'LatestEntriesPlugin', 'db_table': "'cmsplugin_latestentriesplugin'", '_ormbases': ['cms.CMSPlugin']},

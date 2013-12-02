@@ -1,4 +1,4 @@
-"""Query entries plugin"""
+"""Add offset field for LatestEntriesPlugin"""
 from south.db import db
 from south.v2 import SchemaMigration
 
@@ -11,18 +11,12 @@ from zinnia.migrations import user_model_label
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'QueryEntriesPlugin'
-        db.create_table('cmsplugin_queryentriesplugin', (
-            ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('query', self.gf('django.db.models.fields.CharField')(max_length=250)),
-            ('number_of_entries', self.gf('django.db.models.fields.IntegerField')(default=5)),
-            ('template_to_render', self.gf('django.db.models.fields.CharField')(max_length=250, blank=True)),
-        ))
-        db.send_create_signal('cmsplugin_zinnia', ['QueryEntriesPlugin'])
+        db.add_column(u'cmsplugin_latestentriesplugin', 'offset',
+                      self.gf('django.db.models.fields.IntegerField')(default=0),
+                      keep_default=False)
 
     def backwards(self, orm):
-        # Deleting model 'QueryEntriesPlugin'
-        db.delete_table('cmsplugin_queryentriesplugin')
+        db.delete_column('cmsplugin_latestentriesplugin', 'offset')
 
     models = {
         'auth.group': {
@@ -56,6 +50,7 @@ class Migration(SchemaMigration):
         },
         'cms.cmsplugin': {
             'Meta': {'object_name': 'CMSPlugin'},
+            'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
@@ -74,12 +69,20 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
         },
+        'cmsplugin_zinnia.calendarentriesplugin': {
+            'Meta': {'object_name': 'CalendarEntriesPlugin', 'db_table': "'cmsplugin_calendarentriesplugin'", '_ormbases': ['cms.CMSPlugin']},
+            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'month': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'year': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'})
+        },
         'cmsplugin_zinnia.latestentriesplugin': {
             'Meta': {'object_name': 'LatestEntriesPlugin', 'db_table': "'cmsplugin_latestentriesplugin'", '_ormbases': ['cms.CMSPlugin']},
             'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['%s']" % user_orm_label, 'null': 'True', 'blank': 'True'}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['zinnia.Category']", 'null': 'True', 'blank': 'True'}),
             'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'featured': ('django.db.models.fields.NullBooleanField', [], {'null': 'True', 'blank': 'True'}),
             'number_of_entries': ('django.db.models.fields.IntegerField', [], {'default': '5'}),
+            'offset': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'subcategories': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'tags': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['tagging.Tag']", 'null': 'True', 'blank': 'True'}),
             'template_to_render': ('django.db.models.fields.CharField', [], {'max_length': '250', 'blank': 'True'})
@@ -134,14 +137,17 @@ class Migration(SchemaMigration):
             'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
         },
         'zinnia.entry': {
-            'Meta': {'ordering': "['-creation_date']", 'object_name': 'Entry'},
+            'Meta': {'ordering': "['-creation_date']", 'object_name': 'Entry', 'index_together': "[['slug', 'creation_date']]"},
             'authors': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "'entries'", 'blank': 'True', 'to': "orm['%s']" % user_orm_label}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'entries'", 'null': 'True', 'symmetrical': 'False', 'to': "orm['zinnia.Category']"}),
+            'comment_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'comment_enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'content': ('django.db.models.fields.TextField', [], {}),
+            'content': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'content_placeholder': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['cms.Placeholder']", 'null': 'True'}),
+            'content_template': ('django.db.models.fields.CharField', [], {'default': "'zinnia/_entry_detail.html'", 'max_length': '250'}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'end_publication': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2042, 3, 15, 0, 0)'}),
+            'detail_template': ('django.db.models.fields.CharField', [], {'default': "'entry_detail.html'", 'max_length': '250'}),
+            'end_publication': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'excerpt': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'featured': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -149,15 +155,17 @@ class Migration(SchemaMigration):
             'last_update': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'login_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '50', 'blank': 'True'}),
+            'pingback_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'pingback_enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'related': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'related_rel_+'", 'null': 'True', 'to': "orm['zinnia.Entry']"}),
             'sites': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'entries'", 'symmetrical': 'False', 'to': "orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'}),
-            'start_publication': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'start_publication': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'status': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'tags': ('tagging.fields.TagField', [], {}),
-            'template': ('django.db.models.fields.CharField', [], {'default': "'zinnia/entry_detail.html'", 'max_length': '250'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'trackback_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'trackback_enabled': ('django.db.models.fields.BooleanField', [], {'default': 'True'})
         }
     }
 
