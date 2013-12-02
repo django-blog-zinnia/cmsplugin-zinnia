@@ -163,5 +163,5 @@ class CalendarEntriesPlugin(CMSPlugin):
     def __str__(self):
         name = _('Calendar entries')
         if self.year:
-            name = '%s: %s/%s' % (name, self.year, self.month)
-        return '%s' % name
+            name = u'%s: %s/%s' % (name, self.year, self.month)
+        return u'%s' % name
