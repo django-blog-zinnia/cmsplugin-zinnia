@@ -133,7 +133,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         """
         Update the context with plugin's data
         """
-        context = super(CMSSelectedEntriesPlugin, self).render(
+        context = super(CMSRandomEntriesPlugin, self).render(
             context, instance, placeholder)
         context['template_to_render'] = (str(instance.template_to_render) or
                                          'zinnia/tags/random_entries.html')
