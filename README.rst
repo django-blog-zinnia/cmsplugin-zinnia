@@ -92,6 +92,23 @@ Example: ::
 Changelog
 =========
 
+0.5
+---
+- Archives plugin
+- Tag cloud plugin
+- Author list plugin
+- Categories plugins
+- Featured entries filter
+- Offset for latest entries
+- Documentation improvements
+- Configurable apphook's urls
+- Support custom auth.User model
+- Fix translations of the plugins
+- Fix HTML rendering without context
+- Compatibility with Django v1.5
+- Compatibility with Zinnia v0.13
+- Updating the buildout installation
+
 0.4.1
 -----
 
