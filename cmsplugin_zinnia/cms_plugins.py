@@ -181,7 +181,6 @@ class CMSSearchPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including a Zinnia's search form
     """
-    model = CMSPlugin
     name = _('Entries search form')
     render_template = 'cmsplugin_zinnia/search_form.html'
 
@@ -196,7 +195,6 @@ class CMSToolsPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including tool links for Zinnia
     """
-    model = CMSPlugin
     name = _('Administration tools')
     render_template = 'cmsplugin_zinnia/tools.html'
 
@@ -211,7 +209,6 @@ class CMSPublishedCategoriesPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including Zinnia's published categories
     """
-    model = CMSPlugin
     name = _('Published categories')
     render_template = 'cmsplugin_zinnia/categories_published.html'
 
@@ -220,7 +217,6 @@ class CMSTreeCategoriesPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including Zinnia's categories as a tree
     """
-    model = CMSPlugin
     name = _('Categories tree')
     render_template = 'cmsplugin_zinnia/categories_tree.html'
 
@@ -229,7 +225,6 @@ class CMSPublishedAuthorsPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including Zinnia's published authors
     """
-    model = CMSPlugin
     name = _('Published authors')
     render_template = 'cmsplugin_zinnia/authors_published.html'
 
@@ -238,7 +233,6 @@ class CMSTagCloudPlugin(ZinniaCMSPluginBase):
     """
     Plugin for including Zinnia's tag cloud
     """
-    model = CMSPlugin
     name = _('Tag cloud')
     render_template = 'cmsplugin_zinnia/tag_cloud.html'
 
@@ -247,7 +241,6 @@ class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
     """
     Plugin for including an archive tree
     """
-    model = CMSPlugin
     name = _('Archives tree')
     render_template = 'cmsplugin_zinnia/archives_tree.html'
 
