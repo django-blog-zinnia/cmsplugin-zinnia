@@ -8,7 +8,6 @@ from tagging.models import TaggedItem
 
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
-from cms.models.pluginmodel import CMSPlugin
 
 from zinnia.models import Entry
 from zinnia.models import Author
