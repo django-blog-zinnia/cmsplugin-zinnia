@@ -1,5 +1,6 @@
 """Models of Zinnia CMS Plugins"""
 from django.db import models
+from django.utils import six
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -161,7 +162,7 @@ class CalendarEntriesPlugin(CMSPlugin):
     month = models.PositiveIntegerField(_('month'), null=True, blank=True)
 
     def __str__(self):
-        name = _('Calendar entries')
+        name = six.text_type(_('Calendar entries'))
         if self.year:
-            name = u'%s: %s/%s' % (name, self.year, self.month)
-        return u'%s' % name
+            name = '%s: %s/%s' % (name, self.year, self.month)
+        return name
