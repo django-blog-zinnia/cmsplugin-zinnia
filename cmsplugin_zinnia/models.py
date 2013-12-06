@@ -23,8 +23,8 @@ class LatestEntriesPlugin(CMSPlugin):
     featured = models.NullBooleanField(
         _('featured'),
         blank=True, null=True,
-        choices=((True, _('Yes')),
-                 (False, _('No'))))
+        choices=((True, _('Show featured entries only')),
+                 (False, _('Hide features entries'))))
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
         blank=True, null=True)
@@ -43,7 +43,7 @@ class LatestEntriesPlugin(CMSPlugin):
         help_text=_('0 means all the entries'))
     offset = models.PositiveIntegerField(
         _('offset'), default=0,
-        help_text=_('offset used to display entries'))
+        help_text=_('number of entries to skip from top of list'))
     template_to_render = models.CharField(
         _('template'), blank=True,
         max_length=250, choices=TEMPLATES,
