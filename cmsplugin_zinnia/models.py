@@ -24,7 +24,7 @@ class LatestEntriesPlugin(CMSPlugin):
         _('featured'),
         blank=True, null=True,
         choices=((True, _('Show featured entries only')),
-                 (False, _('Hide features entries'))))
+                 (False, _('Hide featured entries'))))
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
         blank=True, null=True)
