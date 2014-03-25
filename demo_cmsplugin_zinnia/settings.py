@@ -81,6 +81,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'zinnia.context_processors.version',
+    'cms.context_processors.cms_settings',
     'sekizai.context_processors.sekizai',
 )
 
@@ -99,8 +100,8 @@ INSTALLED_APPS = (
     'zinnia',
     'tagging',
     'sekizai',
+    'djangocms_text_ckeditor'
     'cms',
-    'cms.plugins.text',
     'cmsplugin_zinnia',
     'menus',
 )
