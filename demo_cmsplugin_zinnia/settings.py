@@ -100,7 +100,7 @@ INSTALLED_APPS = (
     'zinnia',
     'tagging',
     'sekizai',
-    'djangocms_text_ckeditor'
+    'djangocms_text_ckeditor',
     'cms',
     'cmsplugin_zinnia',
     'menus',
