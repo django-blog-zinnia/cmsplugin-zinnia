@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'cms',
     'cmsplugin_zinnia',
     'menus',
+    'south',
 )
 
 CMS_TEMPLATES = (
