@@ -42,21 +42,21 @@ class EntryMenu(CMSAttachMenu):
 
             if not key_archive_year in archives:
                 nodes.append(NavigationNode(
-                    year, reverse('zinnia_entry_archive_year', args=[year]),
+                    year, reverse('zinnia:entry_archive_year', args=[year]),
                     key_archive_year, attr=attributes))
                 archives.append(key_archive_year)
 
             if not key_archive_month in archives:
                 nodes.append(NavigationNode(
                     month_text,
-                    reverse('zinnia_entry_archive_month', args=[year, month]),
+                    reverse('zinnia:entry_archive_month', args=[year, month]),
                     key_archive_month, key_archive_year,
                     attr=attributes))
                 archives.append(key_archive_month)
 
             if not key_archive_day in archives:
                 nodes.append(NavigationNode(
-                    day, reverse('zinnia_entry_archive_day',
+                    day, reverse('zinnia:entry_archive_day',
                                  args=[year, month, day]),
                     key_archive_day, key_archive_month,
                     attr=attributes))
@@ -79,7 +79,7 @@ class CategoryMenu(CMSAttachMenu):
         """
         nodes = []
         nodes.append(NavigationNode(_('Categories'),
-                                    reverse('zinnia_category_list'),
+                                    reverse('zinnia:category_list'),
                                     'categories'))
         for category in Category.objects.all():
             nodes.append(NavigationNode(category.title,
@@ -100,7 +100,7 @@ class AuthorMenu(CMSAttachMenu):
         """
         nodes = []
         nodes.append(NavigationNode(_('Authors'),
-                                    reverse('zinnia_author_list'),
+                                    reverse('zinnia:author_list'),
                                     'authors'))
         for author in Author.published.all():
             nodes.append(NavigationNode(author.__unicode__(),
@@ -120,7 +120,7 @@ class TagMenu(CMSAttachMenu):
         Return menu's node for tags
         """
         nodes = []
-        nodes.append(NavigationNode(_('Tags'), reverse('zinnia_tag_list'),
+        nodes.append(NavigationNode(_('Tags'), reverse('zinnia:tag_list'),
                                     'tags'))
         for tag in tags_published():
             nodes.append(NavigationNode(tag.name,
