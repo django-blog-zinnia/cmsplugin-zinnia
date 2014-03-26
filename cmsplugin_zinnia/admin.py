@@ -16,7 +16,7 @@ class EntryPlaceholderAdmin(PlaceholderAdminMixin, EntryAdmin):
     EntryPlaceholder Admin
     """
     fieldsets = (
-        (None, {'fields': ('title', 'image', 'status')}),
+        (None, {'fields': (('title', 'status'), 'image')}),
         (_('Content'), {'fields': ('content_placeholder',),
                         'classes': ('plugin-holder',
                                     'plugin-holder-nopage')})) + \
