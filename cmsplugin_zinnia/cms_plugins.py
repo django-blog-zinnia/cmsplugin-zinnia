@@ -125,7 +125,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
     """
     model = RandomEntriesPlugin
     name = _('Random entries')
-    render_template = 'cmsplugin_zinnia/random_entries.html'
+    render_template = 'cmsplugin_zinnia/entries_random.html'
     fields = ('number_of_entries', 'template_to_render')
 
     def render(self, context, instance, placeholder):
@@ -135,7 +135,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         context = super(CMSRandomEntriesPlugin, self).render(
             context, instance, placeholder)
         context['template_to_render'] = (str(instance.template_to_render) or
-                                         'zinnia/tags/random_entries.html')
+                                         'zinnia/tags/entries_random.html')
         return context
 
 
