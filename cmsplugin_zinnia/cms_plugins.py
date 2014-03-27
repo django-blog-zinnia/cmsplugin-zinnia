@@ -168,7 +168,7 @@ class CMSCalendarEntriesPlugin(ZinniaCMSPluginBase):
     """
     model = CalendarEntriesPlugin
     name = _('Calendar entries')
-    render_template = 'cmsplugin_zinnia/calendar.html'
+    render_template = 'cmsplugin_zinnia/entries_calendar.html'
     fieldsets = ((None, {
         'fields': (('year', 'month'),),
         'description': _("If you don't set year and month, "
@@ -241,7 +241,7 @@ class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
     Plugin for including an archive tree
     """
     name = _('Archives tree')
-    render_template = 'cmsplugin_zinnia/archives_tree.html'
+    render_template = 'cmsplugin_zinnia/entries_archives_tree.html'
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
