@@ -16,10 +16,7 @@ class EntryPlaceholderAdmin(PlaceholderAdminMixin, EntryAdmin):
     EntryPlaceholder Admin
     """
     fieldsets = (
-        (None, {'fields': (('title', 'status'), 'image')}),
-        (_('Content'), {'fields': ('content_placeholder',),
-                        'classes': ('plugin-holder',
-                                    'plugin-holder-nopage')})) + \
+        (_('Content'), {'fields': (('title', 'status'), 'image')}),) + \
         EntryAdmin.fieldsets[1:]
 
     def save_model(self, request, entry, form, change):
@@ -28,7 +25,8 @@ class EntryPlaceholderAdmin(PlaceholderAdminMixin, EntryAdmin):
         of the placeholder
         """
         context = RequestContext(request)
-        entry.content = render_placeholder(entry.content_placeholder, context)
+        content = render_placeholder(entry.content_placeholder, context)
+        entry.content = content or ''
         super(EntryPlaceholderAdmin, self).save_model(
             request, entry, form, change)
 
