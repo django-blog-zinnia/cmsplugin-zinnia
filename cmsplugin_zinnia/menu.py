@@ -124,7 +124,7 @@ class TagMenu(CMSAttachMenu):
                                     'tags'))
         for tag in tags_published():
             nodes.append(NavigationNode(tag.name,
-                                        reverse('zinnia_tag_detail',
+                                        reverse('zinnia:tag_detail',
                                                 args=[tag.name]),
                                         tag.pk, 'tags'))
         return nodes
