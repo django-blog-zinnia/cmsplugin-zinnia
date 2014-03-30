@@ -57,7 +57,9 @@
           <p>{% trans "Just another Zinnia weblog." %}</p>
         </blockquote>
         <ul class="main-menu">
-          {% show_menu 0 100 100 100 %}
+          {% render_model_block request.current_page "changelist" %}
+            {% show_menu 0 100 100 100 %}
+          {% endrender_model_block %}
         </ul>
         {% block breadcrumbs %}{% endblock breadcrumbs %}
       </div>

@@ -125,7 +125,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
     """
     model = RandomEntriesPlugin
     name = _('Random entries')
-    render_template = 'cmsplugin_zinnia/random_entries.html'
+    render_template = 'cmsplugin_zinnia/entries_random.html'
     fields = ('number_of_entries', 'template_to_render')
 
     def render(self, context, instance, placeholder):
@@ -135,7 +135,7 @@ class CMSRandomEntriesPlugin(ZinniaCMSPluginBase):
         context = super(CMSRandomEntriesPlugin, self).render(
             context, instance, placeholder)
         context['template_to_render'] = (str(instance.template_to_render) or
-                                         'zinnia/tags/random_entries.html')
+                                         'zinnia/tags/entries_random.html')
         return context
 
 
@@ -168,7 +168,7 @@ class CMSCalendarEntriesPlugin(ZinniaCMSPluginBase):
     """
     model = CalendarEntriesPlugin
     name = _('Calendar entries')
-    render_template = 'cmsplugin_zinnia/calendar.html'
+    render_template = 'cmsplugin_zinnia/entries_calendar.html'
     fieldsets = ((None, {
         'fields': (('year', 'month'),),
         'description': _("If you don't set year and month, "
@@ -241,7 +241,7 @@ class CMSArchivesTreePlugin(ZinniaCMSPluginBase):
     Plugin for including an archive tree
     """
     name = _('Archives tree')
-    render_template = 'cmsplugin_zinnia/archives_tree.html'
+    render_template = 'cmsplugin_zinnia/entries_archives_tree.html'
 
 
 plugin_pool.register_plugin(CMSLatestEntriesPlugin)
