@@ -1,4 +1,4 @@
-"""Applications hooks for cmsplugin_zinnia"""
+"""Application hooks for cmsplugin_zinnia"""
 import warnings
 
 from django.utils.importlib import import_module
