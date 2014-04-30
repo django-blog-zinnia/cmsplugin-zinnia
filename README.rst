@@ -105,8 +105,20 @@ Example: ::
 Changelog
 =========
 
+0.6
+---
+
+- Compatibility with DJango-CMS 3.0
+
+0.5.1
+-----
+
+- Python 3 compatibility fix
+- Better help texts and legends
+
 0.5
 ---
+
 - Archives plugin
 - Tag cloud plugin
 - Author list plugin
