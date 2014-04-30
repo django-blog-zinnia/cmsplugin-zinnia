@@ -4,15 +4,15 @@ var gulp       = require('gulp'),
     livereload = require('gulp-livereload');
 
 var HTML       = 'templates/**/*.html',
-    SASS       = 'cmsplugin_zinnia/static/cmsplugin_zinnia/sass/**/*.scss',
-    CSS        = 'cmsplugin_zinnia/static/cmsplugin_zinnia/css/*.css';
+    SASS       = 'demo_cmsplugin_zinnia/static/sass/*.scss',
+    CSS        = 'demo_cmsplugin_zinnia/static/css/*.css';
 
 gulp.task('sass', function() {
 
   return gulp.src(SASS)
          .pipe(sass())
          .pipe(prefix())
-         .pipe(gulp.dest('cmsplugin_zinnia/static/cmsplugin_zinnia/css'));
+         .pipe(gulp.dest('demo_cmsplugin_zinnia/static/css'));
 });
 
 gulp.task('watch', function() {
