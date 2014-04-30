@@ -8,4 +8,4 @@ recursive-include cmsplugin_zinnia/locale *
 recursive-include cmsplugin_zinnia/static *
 recursive-include cmsplugin_zinnia/templates *.txt *.html *.xml *.js
 prune cmsplugin_zinnia/static/cmsplugin_zinnia/css/.sass-cache
-exclude demo_cmsplugin_zinnia/demo.db
+exclude demo_cmsplugin_zinnia/demo.db*
