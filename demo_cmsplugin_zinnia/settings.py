@@ -34,23 +34,6 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('en', gettext('English')),
     ('fr', gettext('French')),
-    ('de', gettext('German')),
-    ('es', gettext('Spanish')),
-    ('it', gettext('Italian')),
-    ('nl', gettext('Dutch')),
-    ('hu', gettext('Hungarian')),
-    ('cs', gettext('Czech')),
-    ('sk', gettext('Slovak')),
-    ('lt', gettext('Lithuanian')),
-    ('ru', gettext('Russian')),
-    ('pl', gettext('Polish')),
-    ('eu', gettext('Basque')),
-    ('ca', gettext('Catalan')),
-    ('tr', gettext('Turkish')),
-    ('hr_HR', gettext('Croatian')),
-    ('pt_BR', gettext('Brazilian Portuguese')),
-    ('fi_FI', gettext('Finnish (Finland)')),
-    ('zh_CN', gettext('Simplified Chinese')),
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +42,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.doc.XViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
@@ -76,10 +58,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
     'zinnia.context_processors.version',
+    'cms.context_processors.cms_settings',
     'sekizai.context_processors.sekizai',
 )
 
@@ -91,23 +72,26 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
+    'djangocms_admin_style',
     'django.contrib.admin',
-    'django.contrib.admindocs',
     'django.contrib.staticfiles',
     'mptt',
     'zinnia',
     'tagging',
     'sekizai',
+    'djangocms_text_ckeditor',
     'cms',
-    'cms.plugins.text',
     'cmsplugin_zinnia',
     'menus',
+    'south',
 )
 
 CMS_TEMPLATES = (
     ('cms/page.html', gettext('Default page')),
 )
 
-CMS_SEO_FIELDS = True
-
 ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
+
+SOUTH_MIGRATION_MODULES = {
+    'zinnia': 'demo_cmsplugin_zinnia.migrations.zinnia',
+}

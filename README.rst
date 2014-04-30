@@ -45,6 +45,19 @@ Just add this line in your project's settings to use it. ::
      $ python manage.py syncdb --all
      $ python manage.py migrate --fake
 
+Tips for using the apphook
+==========================
+
+If you want to use the apphook to provide the blog functionnalities under a
+specific URL handled by the CMS, remember these tips:
+
+* You have to set the application instance name field to ``zinnia``,
+  otherwise the URLs provided by Zinnia will not be resolved.
+
+* Once the apphook is registered, you can remove the inclusion of
+  ``'zinnia.urls'`` in ``urls.py`` and then restart the server to see it in
+  full effect.
+
 .. _settings:
 
 Settings
@@ -92,8 +105,20 @@ Example: ::
 Changelog
 =========
 
+0.6
+---
+
+- Compatibility with DJango-CMS 3.0
+
+0.5.1
+-----
+
+- Python 3 compatibility fix
+- Better help texts and legends
+
 0.5
 ---
+
 - Archives plugin
 - Tag cloud plugin
 - Author list plugin
