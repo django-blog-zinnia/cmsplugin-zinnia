@@ -3,7 +3,7 @@ var gulp       = require('gulp'),
     prefix     = require('gulp-autoprefixer'),
     livereload = require('gulp-livereload');
 
-var HTML       = 'templates/**/*.html',
+var HTML       = 'demo_cmsplugin_zinnia/templates/**/*.html',
     SASS       = 'demo_cmsplugin_zinnia/static/sass/*.scss',
     CSS        = 'demo_cmsplugin_zinnia/static/css/*.css';
 
@@ -19,8 +19,12 @@ gulp.task('watch', function() {
 
   var server = livereload();
 
-  gulp.watch([HTML, CSS], function(file) {
+  gulp.watch(CSS, function(file) {
     server.changed(file.path);
+  });
+
+  gulp.watch(HTML, function(file) {
+    server.changed('.');
   });
 
   gulp.watch(SASS, ['sass']);
