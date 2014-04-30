@@ -50,6 +50,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'demo_cmsplugin_zinnia.urls'
 
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )

@@ -3,24 +3,28 @@ var gulp       = require('gulp'),
     prefix     = require('gulp-autoprefixer'),
     livereload = require('gulp-livereload');
 
-var HTML       = 'templates/**/*.html',
-    SASS       = 'cmsplugin_zinnia/static/cmsplugin_zinnia/sass/**/*.scss',
-    CSS        = 'cmsplugin_zinnia/static/cmsplugin_zinnia/css/*.css';
+var HTML       = 'demo_cmsplugin_zinnia/templates/**/*.html',
+    SASS       = 'demo_cmsplugin_zinnia/static/sass/*.scss',
+    CSS        = 'demo_cmsplugin_zinnia/static/css/*.css';
 
 gulp.task('sass', function() {
 
   return gulp.src(SASS)
          .pipe(sass())
          .pipe(prefix())
-         .pipe(gulp.dest('cmsplugin_zinnia/static/cmsplugin_zinnia/css'));
+         .pipe(gulp.dest('demo_cmsplugin_zinnia/static/css'));
 });
 
 gulp.task('watch', function() {
 
   var server = livereload();
 
-  gulp.watch([HTML, CSS], function(file) {
+  gulp.watch(CSS, function(file) {
     server.changed(file.path);
+  });
+
+  gulp.watch(HTML, function(file) {
+    server.changed('.');
   });
 
   gulp.watch(SASS, ['sass']);
