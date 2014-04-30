@@ -1,0 +1,10 @@
+// Load configurables variables.
+@import "config/base";
+// Import the mixins
+@import "mixins/suckerfish";
+// Combine the partials into a single stylesheet.
+// under the body.zinnia class to avoid interferences
+.zinnia {
+  @import "partials/menu";
+  @import "partials/cms_compatibility";
+}
