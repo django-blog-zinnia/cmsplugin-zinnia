@@ -108,7 +108,7 @@ Changelog
 0.6
 ---
 
-- Compatibility with DJango-CMS 3.0
+- Compatibility with Django-CMS 3.0
 
 0.5.1
 -----
