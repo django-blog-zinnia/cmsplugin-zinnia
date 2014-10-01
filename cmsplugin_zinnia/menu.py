@@ -103,7 +103,11 @@ class AuthorMenu(CMSAttachMenu):
                                     reverse('zinnia:author_list'),
                                     'authors'))
         for author in Author.published.all():
-            nodes.append(NavigationNode(author.__unicode__(),
+            if hasattr(author, '__unicode__'):
+                str_author = author.__unicode__()
+            else:
+                str_author = str(author)
+            nodes.append(NavigationNode(str_author,
                                         author.get_absolute_url(),
                                         author.pk, 'authors'))
         return nodes
