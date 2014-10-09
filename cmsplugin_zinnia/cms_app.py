@@ -30,5 +30,6 @@ class ZinniaApphook(CMSApp):
     name = _('Zinnia Weblog')
     urls = APP_URLS
     menus = app_menus
+    app_name = 'zinnia'
 
 apphook_pool.register(ZinniaApphook)
