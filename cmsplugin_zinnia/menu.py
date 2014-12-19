@@ -10,9 +10,9 @@ from menus.base import NavigationNode
 from menus.menu_pool import menu_pool
 from cms.menu_bases import CMSAttachMenu
 
-from zinnia.models import Entry
-from zinnia.models import Author
-from zinnia.models import Category
+from zinnia.models.entry import Entry
+from zinnia.models.author import Author
+from zinnia.models.category import Category
 from zinnia.managers import tags_published
 from cmsplugin_zinnia.settings import HIDE_ENTRY_MENU
 
@@ -40,13 +40,13 @@ class EntryMenu(CMSAttachMenu):
             key_archive_month = 'month-%s-%s' % (year, month)
             key_archive_day = 'day-%s-%s-%s' % (year, month, day)
 
-            if not key_archive_year in archives:
+            if key_archive_year not in archives:
                 nodes.append(NavigationNode(
                     year, reverse('zinnia:entry_archive_year', args=[year]),
                     key_archive_year, attr=attributes))
                 archives.append(key_archive_year)
 
-            if not key_archive_month in archives:
+            if key_archive_month not in archives:
                 nodes.append(NavigationNode(
                     month_text,
                     reverse('zinnia:entry_archive_month', args=[year, month]),
@@ -54,7 +54,7 @@ class EntryMenu(CMSAttachMenu):
                     attr=attributes))
                 archives.append(key_archive_month)
 
-            if not key_archive_day in archives:
+            if key_archive_day not in archives:
                 nodes.append(NavigationNode(
                     day, reverse('zinnia:entry_archive_day',
                                  args=[year, month, day]),
@@ -103,7 +103,7 @@ class AuthorMenu(CMSAttachMenu):
                                     reverse('zinnia:author_list'),
                                     'authors'))
         for author in Author.published.all():
-            nodes.append(NavigationNode(author.__unicode__(),
+            nodes.append(NavigationNode(author.__str__(),
                                         author.get_absolute_url(),
                                         author.pk, 'authors'))
         return nodes

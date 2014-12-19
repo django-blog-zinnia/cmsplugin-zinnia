@@ -1,16 +1,18 @@
 """Placeholder model for Zinnia"""
 import inspect
 
+from django.db import models
 from django.template.context import RequestContext
+
 from cms.models.fields import PlaceholderField
 from cms.plugin_rendering import render_placeholder
 
 from zinnia.models_bases.entry import AbstractEntry
 
 
-class EntryPlaceholder(AbstractEntry):
+class PlaceholderEntry(models.Model):
     """
-    Entry with a Placeholder to edit content
+    Abstract model class adding a Placeholder to edit content.
     """
 
     content_placeholder = PlaceholderField('content')
@@ -51,6 +53,19 @@ class EntryPlaceholder(AbstractEntry):
             # have not been found in the stack.
             pass
         return self.content  # Ultimate fallback
+
+    class Meta(AbstractEntry.Meta):
+        """
+        PlaceholderEntry's Meta
+        """
+        abstract = True
+
+
+class EntryPlaceholder(PlaceholderEntry,
+                       AbstractEntry):
+    """
+    Entry with a Placeholder to edit content.
+    """
 
     class Meta(AbstractEntry.Meta):
         """

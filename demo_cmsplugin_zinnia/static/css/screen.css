@@ -1,0 +1,47 @@
+.zinnia ul.main-menu {
+  display: inline-block;
+  font-size: 1.3em; }
+  .zinnia ul.main-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; }
+  .zinnia ul.main-menu a {
+    display: block;
+    width: 8em; }
+  .zinnia ul.main-menu li {
+    float: left;
+    width: 8em; }
+    .zinnia ul.main-menu li:hover ul {
+      left: auto; }
+      .zinnia ul.main-menu li:hover ul li {
+        float: none;
+        display: block; }
+      .zinnia ul.main-menu li:hover ul ul {
+        left: -999em; }
+    .zinnia ul.main-menu li li:hover ul {
+      left: auto; }
+    .zinnia ul.main-menu li ul {
+      position: absolute;
+      width: 6em;
+      left: -999em; }
+      .zinnia ul.main-menu li ul ul {
+        margin: -1em 0 0 6em; }
+  .zinnia ul.main-menu a {
+    font-weight: bold;
+    text-decoration: none; }
+  .zinnia ul.main-menu li {
+    padding: 5px 8px;
+    border: 1px solid #dddddd;
+    list-style: none;
+    background-color: white; }
+    .zinnia ul.main-menu li.ancestor {
+      background-color: #fafafa; }
+    .zinnia ul.main-menu li.selected {
+      background-color: #f7f7f7; }
+.zinnia #cms_toolbar input {
+  background-color: white; }
+.zinnia #cms_toolbar label {
+  font-weight: normal;
+  display: inline; }
+.zinnia #cms_toolbar li {
+  list-style: none; }

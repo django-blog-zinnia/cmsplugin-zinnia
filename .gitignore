@@ -13,6 +13,7 @@ src_eggs
 develop-eggs
 .installed.cfg
 cmsplugin_zinnia.egg-info
+node_modules
 django-apps-src
 demo_cmsplugin_zinnia/demo.db*
-cmsplugin_zinnia/static/cmsplugin_zinnia/css/.sass-cache
+demo_cmsplugin_zinnia/static/css/.sass-cache

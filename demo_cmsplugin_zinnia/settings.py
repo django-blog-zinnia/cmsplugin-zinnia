@@ -50,6 +50,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'demo_cmsplugin_zinnia.urls'
 
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
@@ -67,7 +71,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.sitemaps',
-    'django.contrib.comments',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -75,6 +78,7 @@ INSTALLED_APPS = (
     'djangocms_admin_style',
     'django.contrib.admin',
     'django.contrib.staticfiles',
+    'django_comments',
     'mptt',
     'zinnia',
     'tagging',
@@ -83,7 +87,6 @@ INSTALLED_APPS = (
     'cms',
     'cmsplugin_zinnia',
     'menus',
-    'south',
 )
 
 CMS_TEMPLATES = (
@@ -92,6 +95,6 @@ CMS_TEMPLATES = (
 
 ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
-SOUTH_MIGRATION_MODULES = {
+MIGRATION_MODULES = {
     'zinnia': 'demo_cmsplugin_zinnia.migrations.zinnia',
 }

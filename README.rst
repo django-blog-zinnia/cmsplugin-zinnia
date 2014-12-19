@@ -49,10 +49,7 @@ Tips for using the apphook
 ==========================
 
 If you want to use the apphook to provide the blog functionnalities under a
-specific URL handled by the CMS, remember these tips:
-
-* You have to set the application instance name field to ``zinnia``,
-  otherwise the URLs provided by Zinnia will not be resolved.
+specific URL handled by the CMS, remember this tip:
 
 * Once the apphook is registered, you can remove the inclusion of
   ``'zinnia.urls'`` in ``urls.py`` and then restart the server to see it in
@@ -105,10 +102,16 @@ Example: ::
 Changelog
 =========
 
+0.7
+---
+
+- PlaceholderEntry mixin
+- Compatibility with Django 1.7 and Zinnia 0.15
+
 0.6
 ---
 
-- Compatibility with DJango-CMS 3.0
+- Compatibility with Django-CMS 3.0
 
 0.5.1
 -----
