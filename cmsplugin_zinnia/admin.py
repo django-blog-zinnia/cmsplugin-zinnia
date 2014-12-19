@@ -32,5 +32,4 @@ class EntryPlaceholderAdmin(PlaceholderAdminMixin, EntryAdmin):
 
 
 if ENTRY_BASE_MODEL == 'cmsplugin_zinnia.placeholder.EntryPlaceholder':
-    admin.site.unregister(Entry)
     admin.site.register(Entry, EntryPlaceholderAdmin)
