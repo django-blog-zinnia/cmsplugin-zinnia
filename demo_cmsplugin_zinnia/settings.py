@@ -87,7 +87,6 @@ INSTALLED_APPS = (
     'cms',
     'cmsplugin_zinnia',
     'menus',
-    'south',
 )
 
 CMS_TEMPLATES = (
@@ -96,6 +95,6 @@ CMS_TEMPLATES = (
 
 ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
-SOUTH_MIGRATION_MODULES = {
+MIGRATION_MODULES = {
     'zinnia': 'demo_cmsplugin_zinnia.migrations.zinnia',
 }
