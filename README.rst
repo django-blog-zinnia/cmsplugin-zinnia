@@ -102,6 +102,12 @@ Example: ::
 Changelog
 =========
 
+0.7
+---
+
+- PlaceholderEntry mixin
+- Compatibility with Django 1.7 and Zinnia 0.15
+
 0.6
 ---
 
