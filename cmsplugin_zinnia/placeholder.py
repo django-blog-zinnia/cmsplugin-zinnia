@@ -48,7 +48,7 @@ class PlaceholderEntry(models.Model):
         context = self.acquire_context()
         try:
             return render_placeholder(self.content_placeholder, context)
-        except AttributeError:
+        except (AttributeError, KeyError):
             # Should happen when ``context`` and ``request``
             # have not been found in the stack.
             pass
