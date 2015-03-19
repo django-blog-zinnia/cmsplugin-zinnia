@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import mptt.fields
+import zinnia.models_bases.entry
 import django.utils.timezone
 import cms.models.fields
 import tagging.fields
@@ -12,7 +13,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0001_initial'),
-        ('cms', '__first__'),
+        ('cms', '0003_auto_20140926_2347'),
         ('sites', '0001_initial'),
     ]
 
@@ -55,8 +56,10 @@ class Migration(migrations.Migration):
                 ('comment_count', models.IntegerField(default=0, verbose_name='comment count')),
                 ('pingback_count', models.IntegerField(default=0, verbose_name='pingback count')),
                 ('trackback_count', models.IntegerField(default=0, verbose_name='trackback count')),
-                ('excerpt', models.TextField(help_text='Used for search and SEO.', verbose_name='excerpt', blank=True)),
-                ('image', models.ImageField(help_text='Used for illustration.', upload_to=b'', verbose_name='image', blank=True)),
+                ('lead', models.TextField(help_text='Lead paragraph', verbose_name='lead', blank=True)),
+                ('excerpt', models.TextField(help_text='Used for SEO purposes.', verbose_name='excerpt', blank=True)),
+                ('image', models.ImageField(help_text='Used for illustration.', upload_to=zinnia.models_bases.entry.image_upload_to_dispatcher, verbose_name='image', blank=True)),
+                ('image_caption', models.TextField(help_text="Image's caption.", verbose_name='caption', blank=True)),
                 ('featured', models.BooleanField(default=False, verbose_name='featured')),
                 ('tags', tagging.fields.TagField(max_length=255, verbose_name='tags', blank=True)),
                 ('login_required', models.BooleanField(default=False, help_text='Only authenticated users can view the entry.', verbose_name='login required')),

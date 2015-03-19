@@ -97,4 +97,7 @@ ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
 MIGRATION_MODULES = {
     'zinnia': 'demo_cmsplugin_zinnia.migrations.zinnia',
+    'cms': 'cms.migrations_django',
+    'menus': 'menus.migrations_django',
+    'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
 }
