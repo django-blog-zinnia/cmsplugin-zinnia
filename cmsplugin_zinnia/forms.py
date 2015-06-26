@@ -19,4 +19,4 @@ class CalendarEntriesAdminForm(forms.ModelForm):
 
     class Meta:
         model = CalendarEntriesPlugin
-        fields = '__all__'
+        fields = forms.ALL_FIELDS
