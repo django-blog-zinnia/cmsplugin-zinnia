@@ -102,6 +102,11 @@ Example: ::
 Changelog
 =========
 
+0.8
+---
+
+- Compatibility with Django 1.8
+
 0.7
 ---
 
