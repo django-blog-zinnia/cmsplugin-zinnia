@@ -28,16 +28,16 @@ class LatestEntriesPlugin(CMSPlugin):
                  (False, _('Hide featured entries'))))
     categories = models.ManyToManyField(
         'zinnia.Category', verbose_name=_('categories'),
-        blank=True, null=True)
+        blank=True)
     subcategories = models.BooleanField(
         _('include subcategories'), default=True,
         help_text=_('include the entries belonging the subcategories'))
     authors = models.ManyToManyField(
         'zinnia.Author', verbose_name=_('authors'),
-        blank=True, null=True)
+        blank=True)
     tags = models.ManyToManyField(
         'tagging.Tag', verbose_name=_('tags'),
-        blank=True, null=True)
+        blank=True)
 
     number_of_entries = models.PositiveIntegerField(
         _('number of entries'), default=5,
