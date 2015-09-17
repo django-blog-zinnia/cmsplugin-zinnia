@@ -1,7 +1,7 @@
 """Application hooks for cmsplugin_zinnia"""
 import warnings
 
-from django.utils.importlib import import_module
+from importlib import import_module
 from django.utils.translation import ugettext_lazy as _
 
 from cms.app_base import CMSApp
