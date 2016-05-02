@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
                 ('number_of_entries', models.PositiveIntegerField(default=5, help_text='0 means all the entries', verbose_name='number of entries')),
                 ('offset', models.PositiveIntegerField(default=0, help_text='number of entries to skip from top of list', verbose_name='offset')),
                 ('template_to_render', models.CharField(blank=True, help_text='template used to display the plugin', max_length=250, verbose_name='template', choices=[(b'cmsplugin_zinnia/entry_list.html', 'Entry list (default)'), (b'cmsplugin_zinnia/entry_detail.html', 'Entry detailed'), (b'cmsplugin_zinnia/entry_slider.html', 'Entry slider')])),
-                ('authors', models.ManyToManyField(to='zinnia.Author', null=True, verbose_name='authors', blank=True)),
-                ('categories', models.ManyToManyField(to='zinnia.Category', null=True, verbose_name='categories', blank=True)),
-                ('tags', models.ManyToManyField(to='tagging.Tag', null=True, verbose_name='tags', blank=True)),
+                ('authors', models.ManyToManyField(to='zinnia.Author', verbose_name='authors', blank=True)),
+                ('categories', models.ManyToManyField(to='zinnia.Category', verbose_name='categories', blank=True)),
+                ('tags', models.ManyToManyField(to='tagging.Tag', verbose_name='tags', blank=True)),
             ],
             options={
                 'abstract': False,

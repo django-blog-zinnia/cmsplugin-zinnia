@@ -60,8 +60,8 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.request',
+    'django.template.context_processors.i18n',
+    'django.template.context_processors.request',
     'django.contrib.messages.context_processors.messages',
     'zinnia.context_processors.version',
     'cms.context_processors.cms_settings',
@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'zinnia',
     'tagging',
     'sekizai',
+    'treebeard',
     'djangocms_text_ckeditor',
     'cms',
     'cmsplugin_zinnia',
@@ -97,7 +98,4 @@ ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
 MIGRATION_MODULES = {
     'zinnia': 'demo_cmsplugin_zinnia.migrations.zinnia',
-    'cms': 'cms.migrations_django',
-    'menus': 'menus.migrations_django',
-    'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
 }
