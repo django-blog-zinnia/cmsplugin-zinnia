@@ -102,6 +102,11 @@ Example: ::
 Changelog
 =========
 
+0.8.1
+-----
+
+- Remove warnings with Django 1.9
+
 0.8
 ---
 
