@@ -25,8 +25,11 @@ class EntryPlaceholderAdmin(PlaceholderAdminMixin, EntryAdmin):
         of the placeholder
         """
         context = RequestContext(request)
-        content = render_placeholder(entry.content_placeholder, context)
-        entry.content = content or ''
+        try:
+            content = render_placeholder(entry.content_placeholder, context)
+            entry.content = content or ''
+        except KeyError:
+            entry.content = ''
         super(EntryPlaceholderAdmin, self).save_model(
             request, entry, form, change)
 
