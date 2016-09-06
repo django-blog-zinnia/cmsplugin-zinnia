@@ -41,10 +41,10 @@ class ZinniaToolbar(CMSToolbar):
             disabled=not user.has_perm('tagging.change_tag'))
 
         # remove complete menu if all items are disabled
-        for item in zinnia_menu.get_items():
-            if not getattr(item, 'disabled', True):
-                return
-        self.toolbar.remove_item(zinnia_menu)
+        enabled_items = [item for item in zinnia_menu.get_items()
+                         if not getattr(item, 'disabled', True)]
+        if len(enabled_items) == 0:
+            self.toolbar.remove_item(zinnia_menu)
 
 
 toolbar_pool.register(ZinniaToolbar)
