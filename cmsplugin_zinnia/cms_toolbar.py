@@ -42,7 +42,7 @@ class ZinniaToolbar(CMSToolbar):
 
         # remove complete menu if all items are disabled
         for item in zinnia_menu.get_items():
-            if hasattr(item, 'disabled') and not item.disabled:
+            if not getattr(item, 'disabled', True):
                 return
         self.toolbar.remove_item(zinnia_menu)
 
