@@ -36,14 +36,13 @@ Just add this line in your project's settings to use it. ::
   ZINNIA_ENTRY_BASE_MODEL = 'cmsplugin_zinnia.placeholder.EntryPlaceholder'
 
 .. note::
-   If you are using South for migrating your models, you have to keep in
-   mind that the default migrations bundled with Zinnia do not reflect
-   the addition made by the ``EntryPlaceholder`` model.
+   You have to keep in mind that the default migrations bundled with Zinnia
+   do not reflect the addition made by the ``EntryPlaceholder`` model.
 
    A solution to initialize correctly the database can be: ::
 
-     $ python manage.py syncdb --all
-     $ python manage.py migrate --fake
+     $ python manage.py makemigrations
+     $ python manage.py migrate
 
 Tips for using the apphook
 ==========================
