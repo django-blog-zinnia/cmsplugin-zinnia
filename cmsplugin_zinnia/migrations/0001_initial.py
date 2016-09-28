@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CalendarEntriesPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
                 ('year', models.PositiveIntegerField(null=True, verbose_name='year', blank=True)),
                 ('month', models.PositiveIntegerField(null=True, verbose_name='month', blank=True)),
             ],
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='LatestEntriesPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
                 ('featured', models.NullBooleanField(verbose_name='featured', choices=[(True, 'Show featured entries only'), (False, 'Hide featured entries')])),
                 ('subcategories', models.BooleanField(default=True, help_text='include the entries belonging the subcategories', verbose_name='include subcategories')),
                 ('number_of_entries', models.PositiveIntegerField(default=5, help_text='0 means all the entries', verbose_name='number of entries')),
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QueryEntriesPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
                 ('query', models.CharField(help_text='You can use - to exclude words or phrases, &quot;double quotes&quot; for exact phrases and the AND/OR boolean operators combined with parenthesis for complex queries.', max_length=250, verbose_name='query')),
                 ('number_of_entries', models.PositiveIntegerField(default=5, help_text='0 means all the entries', verbose_name='number of entries')),
                 ('template_to_render', models.CharField(blank=True, help_text='template used to display the plugin', max_length=250, verbose_name='template', choices=[(b'cmsplugin_zinnia/entry_list.html', 'Entry list (default)'), (b'cmsplugin_zinnia/entry_detail.html', 'Entry detailed'), (b'cmsplugin_zinnia/entry_slider.html', 'Entry slider')] + PLUGINS_TEMPLATES)),
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RandomEntriesPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
                 ('number_of_entries', models.PositiveIntegerField(default=5, verbose_name='number of entries')),
                 ('template_to_render', models.CharField(blank=True, help_text='template used to display the plugin', max_length=250, verbose_name='template', choices=[(b'cmsplugin_zinnia/entry_list.html', 'Entry list (default)'), (b'cmsplugin_zinnia/entry_detail.html', 'Entry detailed'), (b'cmsplugin_zinnia/entry_slider.html', 'Entry slider')] + PLUGINS_TEMPLATES)),
             ],
@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SelectedEntriesPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
                 ('template_to_render', models.CharField(blank=True, help_text='template used to display the plugin', max_length=250, verbose_name='template', choices=[(b'cmsplugin_zinnia/entry_list.html', 'Entry list (default)'), (b'cmsplugin_zinnia/entry_detail.html', 'Entry detailed'), (b'cmsplugin_zinnia/entry_slider.html', 'Entry slider')] + PLUGINS_TEMPLATES)),
                 ('entries', models.ManyToManyField(to='zinnia.Entry', verbose_name='entries')),
             ],
