@@ -8,7 +8,7 @@ PLUGINS_TEMPLATES = getattr(settings, 'CMSPLUGIN_ZINNIA_TEMPLATES', [])
 APP_URLS = getattr(settings, 'CMSPLUGIN_ZINNIA_APP_URLS', ['zinnia.urls'])
 
 APP_MENUS = getattr(settings, 'CMSPLUGIN_ZINNIA_APP_MENUS',
-                    ['cmsplugin_zinnia.menu.EntryMenu',
-                     'cmsplugin_zinnia.menu.CategoryMenu',
-                     'cmsplugin_zinnia.menu.TagMenu',
-                     'cmsplugin_zinnia.menu.AuthorMenu'])
+                    ['cmsplugin_zinnia.cms_menus.EntryMenu',
+                     'cmsplugin_zinnia.cms_menus.CategoryMenu',
+                     'cmsplugin_zinnia.cms_menus.TagMenu',
+                     'cmsplugin_zinnia.cms_menus.AuthorMenu'])
