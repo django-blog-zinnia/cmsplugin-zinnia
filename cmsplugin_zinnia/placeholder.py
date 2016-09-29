@@ -54,10 +54,7 @@ class PlaceholderEntry(models.Model):
             pass
         return self.content  # Ultimate fallback
 
-    class Meta(AbstractEntry.Meta):
-        """
-        PlaceholderEntry's Meta
-        """
+    class Meta:
         abstract = True
 
 
