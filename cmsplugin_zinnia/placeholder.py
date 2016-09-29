@@ -54,6 +54,14 @@ class PlaceholderEntry(models.Model):
             pass
         return self.content  # Ultimate fallback
 
+    def save(self, *args, **kwargs):
+        """
+        Fill the Entry.content field with the interpretation
+        of the placeholder, for data integrity.
+        """
+        self.content = self.html_content
+        super(PlaceholderEntry, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True
 
