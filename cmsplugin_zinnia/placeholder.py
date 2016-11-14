@@ -5,9 +5,20 @@ from django.db import models
 from django.template.context import RequestContext
 
 from cms.models.fields import PlaceholderField
-from cms.plugin_rendering import render_placeholder
+from cms.plugin_rendering import ContentRenderer
 
 from zinnia.models_bases.entry import AbstractEntry
+
+
+def render_placeholder(placeholder, request):
+    """
+    See http://docs.django-cms.org/en/develop/upgrade/3.4.html#manual-plugin-rendering
+    """
+    renderer = ContentRenderer(request)
+    context = RequestContext(request)
+    context['request'] = request
+    content = renderer.render_placeholder(placeholder, context=context)
+    return content
 
 
 class PlaceholderEntry(models.Model):
@@ -17,9 +28,9 @@ class PlaceholderEntry(models.Model):
 
     content_placeholder = PlaceholderField('content')
 
-    def acquire_context(self):
+    def acquire_request(self):
         """
-        Inspect the stack to acquire the current context used,
+        Inspect the stack to acquire the current request used,
         to render the placeholder. I'm really sorry for this,
         but if you have a better way, you are welcome !
         """
@@ -32,12 +43,10 @@ class PlaceholderEntry(models.Model):
                 args, varargs, keywords, alocals = inspect.getargvalues(frame)
                 if not request and 'request' in args:
                     request = alocals['request']
-                if 'context' in args:
-                    return alocals['context']
         finally:
             del frame
 
-        return RequestContext(request)
+        return request
 
     @property
     def html_content(self):
@@ -45,9 +54,9 @@ class PlaceholderEntry(models.Model):
         Render the content_placeholder field dynamicly.
         https://github.com/Fantomas42/cmsplugin-zinnia/issues/3
         """
-        context = self.acquire_context()
+        request = self.acquire_request()
         try:
-            return render_placeholder(self.content_placeholder, context)
+            return render_placeholder(self.content_placeholder, request)
         except (AttributeError, KeyError):
             # Should happen when ``context`` and ``request``
             # have not been found in the stack.
