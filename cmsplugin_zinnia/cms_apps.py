@@ -10,7 +10,6 @@ from cms.apphook_pool import apphook_pool
 from cmsplugin_zinnia.settings import APP_URLS
 from cmsplugin_zinnia.settings import APP_MENUS
 
-
 app_menus = []
 for menu_string in APP_MENUS:
     try:
@@ -28,8 +27,13 @@ class ZinniaApphook(CMSApp):
     Zinnia's Apphook
     """
     name = _('Zinnia Weblog')
-    urls = APP_URLS
-    menus = app_menus
     app_name = 'zinnia'
+
+    def get_urls(self, page=None, language=None, **kwargs):
+        return APP_URLS
+
+    def get_menus(self, page=None, language=None, **kwargs):
+        return app_menus
+
 
 apphook_pool.register(ZinniaApphook)
