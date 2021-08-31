@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 
-from cms.plugin_rendering import render_placeholder
+from cms.plugin_rendering import PluginContext 
 from cms.admin.placeholderadmin import PlaceholderAdminMixin
 
 from zinnia.models import Entry
